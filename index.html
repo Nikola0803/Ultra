@@ -1,0 +1,1766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hims – Telehealth for Hair Loss, ED, Mental Health & More</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-dark: #1a3b2e;
+      --green-mid:  #2c5f47;
+      --green-light: #4c8c6b;
+      --cream:      #f5f0e8;
+      --cream-dark: #ede8df;
+      --white:      #ffffff;
+      --text-dark:  #1a1a1a;
+      --text-mid:   #4d4d4d;
+      --text-light: #767676;
+      --border:     #e0dbd3;
+      --yellow:     #f4c542;
+      --orange:     #e8682a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text-dark);
+      background: var(--white);
+      line-height: 1.5;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; border: none; outline: none; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; }
+
+    /* ─── ANNOUNCEMENT BAR ─────────────────────────────────── */
+    .announce-bar {
+      background: var(--green-dark);
+      color: var(--white);
+      text-align: center;
+      padding: 10px 20px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+    .announce-bar a { text-decoration: underline; color: var(--white); }
+
+    /* ─── NAVIGATION ───────────────────────────────────────── */
+    .nav-wrapper {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+    nav {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .nav-logo {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--green-dark);
+      letter-spacing: -0.5px;
+      flex-shrink: 0;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex: 1;
+      justify-content: center;
+    }
+    .nav-links > li { position: relative; }
+    .nav-links > li > a {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 12px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-dark);
+      border-radius: 6px;
+      transition: background 0.15s;
+    }
+    .nav-links > li > a:hover { background: var(--cream); }
+    .nav-links > li > a .chevron {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.2s;
+    }
+    .nav-links > li:hover > a .chevron { transform: rotate(180deg); }
+
+    /* dropdown */
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      min-width: 220px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    }
+    .nav-links > li:hover .dropdown { display: block; }
+    .dropdown a {
+      display: block;
+      padding: 10px 12px;
+      font-size: 14px;
+      color: var(--text-mid);
+      border-radius: 6px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .dropdown a:hover { background: var(--cream); color: var(--text-dark); }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    .nav-actions .btn-login {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-dark);
+      padding: 8px 16px;
+      border-radius: 50px;
+      border: 1.5px solid var(--border);
+      background: transparent;
+      transition: border-color 0.15s;
+    }
+    .nav-actions .btn-login:hover { border-color: var(--text-dark); }
+    .nav-actions .btn-start {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--white);
+      padding: 10px 22px;
+      border-radius: 50px;
+      background: var(--green-dark);
+      transition: background 0.15s;
+    }
+    .nav-actions .btn-start:hover { background: var(--green-mid); }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; padding: 8px; background: none; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--text-dark); border-radius: 2px; }
+
+    /* ─── HERO ─────────────────────────────────────────────── */
+    .hero {
+      background: var(--cream);
+      min-height: 560px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      max-width: 100%;
+      overflow: hidden;
+    }
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 80px 80px 120px;
+      max-width: 640px;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--green-dark);
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 50px;
+      margin-bottom: 24px;
+      width: fit-content;
+    }
+    .hero-content h1 {
+      font-size: clamp(38px, 4vw, 56px);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+    }
+    .hero-content h1 em {
+      font-style: italic;
+      color: var(--green-mid);
+    }
+    .hero-content p {
+      font-size: 17px;
+      color: var(--text-mid);
+      margin-bottom: 36px;
+      max-width: 420px;
+      line-height: 1.65;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--green-dark);
+      color: var(--white);
+      font-size: 15px;
+      font-weight: 700;
+      padding: 16px 32px;
+      border-radius: 50px;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .btn-primary:hover { background: var(--green-mid); transform: translateY(-1px); }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--text-dark);
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 50px;
+      border: 2px solid var(--text-dark);
+      transition: background 0.15s;
+    }
+    .btn-outline:hover { background: rgba(0,0,0,0.04); }
+
+    .hero-trust {
+      margin-top: 32px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 13px;
+      color: var(--text-mid);
+    }
+    .hero-trust .stars { display: flex; gap: 2px; }
+    .hero-trust .stars span { color: var(--yellow); font-size: 16px; }
+    .hero-trust strong { color: var(--text-dark); font-weight: 700; }
+
+    .hero-image-wrap {
+      position: relative;
+      overflow: hidden;
+      background: var(--green-dark);
+    }
+    .hero-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+    .hero-image-placeholder {
+      width: 100%;
+      height: 100%;
+      min-height: 560px;
+      background: linear-gradient(135deg, #1a3b2e 0%, #2c5f47 50%, #4c8c6b 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-image-placeholder .person-silhouette {
+      width: 200px;
+      height: 380px;
+      opacity: 0.18;
+    }
+
+    /* ─── CATEGORY STRIP ──────────────────────────────────── */
+    .categories {
+      background: var(--white);
+      padding: 72px 24px;
+    }
+    .categories .section-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 48px;
+    }
+    .section-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.12;
+      color: var(--text-dark);
+      margin-bottom: 16px;
+    }
+    .section-subtitle {
+      font-size: 16px;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 16px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .cat-card {
+      background: var(--cream);
+      border-radius: 16px;
+      overflow: hidden;
+      text-align: center;
+      padding: 24px 16px 20px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1.5px solid transparent;
+    }
+    .cat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+      border-color: var(--green-light);
+    }
+    .cat-card .cat-img {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      margin: 0 auto 14px;
+      object-fit: cover;
+    }
+    .cat-card .cat-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      margin: 0 auto 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+    }
+    .cat-card h3 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+    .cat-card p {
+      font-size: 11px;
+      color: var(--text-light);
+      line-height: 1.4;
+    }
+    .cat-card .cat-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--green-dark);
+    }
+
+    /* ─── SOCIAL PROOF BANNER ─────────────────────────────── */
+    .proof-banner {
+      background: var(--green-dark);
+      color: var(--white);
+      padding: 48px 24px;
+    }
+    .proof-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      text-align: center;
+    }
+    .proof-item .proof-num {
+      font-size: clamp(36px, 4vw, 52px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .proof-item .proof-label {
+      font-size: 14px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.4;
+    }
+
+    /* ─── FEATURED PRODUCTS ──────────────────────────────── */
+    .products {
+      background: var(--cream);
+      padding: 80px 24px;
+    }
+    .products .section-header { text-align: center; max-width: 600px; margin: 0 auto 48px; }
+    .products-grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .product-card {
+      background: var(--white);
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+    }
+    .product-img {
+      height: 260px;
+      background: var(--cream-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .product-img .badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--green-dark);
+      color: var(--white);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 50px;
+    }
+    .product-info {
+      padding: 20px 20px 24px;
+    }
+    .product-info .product-category {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      margin-bottom: 6px;
+    }
+    .product-info h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .product-info .product-desc {
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+    .product-info .product-price {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .product-info .price-current {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text-dark);
+    }
+    .product-info .price-original {
+      font-size: 14px;
+      color: var(--text-light);
+      text-decoration: line-through;
+    }
+    .product-info .price-note {
+      font-size: 12px;
+      color: var(--text-light);
+    }
+    .product-stars {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    .product-stars .stars { display: flex; gap: 1px; }
+    .product-stars .stars span { color: var(--yellow); font-size: 13px; }
+    .product-stars .review-count { font-size: 12px; color: var(--text-light); }
+    .btn-card {
+      display: block;
+      width: 100%;
+      background: var(--green-dark);
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 13px;
+      border-radius: 50px;
+      text-align: center;
+      transition: background 0.15s;
+    }
+    .btn-card:hover { background: var(--green-mid); }
+
+    /* ─── HOW IT WORKS ───────────────────────────────────── */
+    .how-it-works {
+      background: var(--white);
+      padding: 80px 24px;
+    }
+    .how-it-works .section-header { text-align: center; max-width: 600px; margin: 0 auto 56px; }
+    .steps-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      position: relative;
+    }
+    .steps-grid::before {
+      content: '';
+      position: absolute;
+      top: 48px;
+      left: calc(100% / 6);
+      width: calc(100% * 2/3);
+      height: 2px;
+      background: repeating-linear-gradient(90deg, var(--green-light) 0, var(--green-light) 8px, transparent 8px, transparent 16px);
+    }
+    .step {
+      text-align: center;
+      padding: 0 32px;
+      position: relative;
+    }
+    .step-num {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: var(--cream);
+      border: 3px solid var(--green-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      margin: 0 auto 24px;
+      position: relative;
+      z-index: 1;
+    }
+    .step .step-count {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--green-dark);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .step h3 {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .step p {
+      font-size: 15px;
+      color: var(--text-mid);
+      line-height: 1.65;
+    }
+
+    /* ─── BEFORE / AFTER + TESTIMONIALS ─────────────────── */
+    .testimonials {
+      background: var(--cream);
+      padding: 80px 24px;
+    }
+    .testimonials .section-header { text-align: center; max-width: 600px; margin: 0 auto 48px; }
+    .testimonials-track {
+      display: flex;
+      gap: 24px;
+      max-width: 1280px;
+      margin: 0 auto;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      scrollbar-width: none;
+    }
+    .testimonials-track::-webkit-scrollbar { display: none; }
+    .testimonial-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 32px;
+      min-width: 340px;
+      max-width: 340px;
+      flex-shrink: 0;
+    }
+    .testimonial-card .t-stars { display: flex; gap: 2px; margin-bottom: 16px; }
+    .testimonial-card .t-stars span { color: var(--yellow); font-size: 18px; }
+    .testimonial-card .t-quote {
+      font-size: 16px;
+      color: var(--text-dark);
+      line-height: 1.65;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    .testimonial-card .t-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .t-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--cream-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .t-author-info .t-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+    .t-author-info .t-detail {
+      font-size: 12px;
+      color: var(--text-light);
+    }
+    .t-tag {
+      display: inline-block;
+      background: var(--cream);
+      color: var(--green-dark);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 50px;
+      margin-top: 16px;
+    }
+
+    .testimonials-nav {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 32px;
+    }
+    .testimonials-nav button {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      background: var(--white);
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-dark);
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .testimonials-nav button:hover { border-color: var(--green-dark); background: var(--cream); }
+
+    /* ─── WHY HIMS ─────────────────────────────────────── */
+    .why-hims {
+      background: var(--white);
+      padding: 80px 24px;
+    }
+    .why-hims .section-header { text-align: center; max-width: 600px; margin: 0 auto 56px; }
+    .why-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+    .why-item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .why-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+    }
+    .why-item h3 {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--text-dark);
+      letter-spacing: -0.02em;
+    }
+    .why-item p {
+      font-size: 15px;
+      color: var(--text-mid);
+      line-height: 1.65;
+    }
+
+    /* ─── PRESS ──────────────────────────────────────── */
+    .press {
+      background: var(--cream);
+      padding: 56px 24px;
+      text-align: center;
+    }
+    .press p {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 32px;
+    }
+    .press-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .press-logo {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text-light);
+      letter-spacing: -0.03em;
+      opacity: 0.55;
+      transition: opacity 0.15s;
+      user-select: none;
+    }
+    .press-logo:hover { opacity: 0.85; }
+    .press-logo.serif { font-family: Georgia, serif; font-style: italic; }
+    .press-logo.small { font-size: 15px; letter-spacing: 0.08em; text-transform: uppercase; }
+
+    /* ─── FAQ ─────────────────────────────────────── */
+    .faq {
+      background: var(--white);
+      padding: 80px 24px;
+    }
+    .faq .section-header { text-align: center; max-width: 600px; margin: 0 auto 48px; }
+    .faq-list {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      border-bottom: 1.5px solid var(--border);
+    }
+    .faq-item:first-child { border-top: 1.5px solid var(--border); }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 4px;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-dark);
+      cursor: pointer;
+      text-align: left;
+      gap: 16px;
+      transition: color 0.15s;
+    }
+    .faq-question:hover { color: var(--green-mid); }
+    .faq-question .faq-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 18px;
+      line-height: 1;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .faq-item.open .faq-question .faq-icon {
+      transform: rotate(45deg);
+      border-color: var(--green-dark);
+      color: var(--green-dark);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    .faq-item.open .faq-answer { max-height: 400px; }
+    .faq-answer-inner {
+      padding: 0 4px 24px;
+      font-size: 15px;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+
+    /* ─── CTA BANNER ──────────────────────────────── */
+    .cta-banner {
+      background: var(--green-dark);
+      padding: 80px 24px;
+      text-align: center;
+    }
+    .cta-banner h2 {
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .cta-banner p {
+      font-size: 17px;
+      color: rgba(255,255,255,0.72);
+      margin-bottom: 36px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .btn-cta-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      color: var(--green-dark);
+      font-size: 16px;
+      font-weight: 700;
+      padding: 17px 40px;
+      border-radius: 50px;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .btn-cta-white:hover { background: var(--cream); transform: translateY(-1px); }
+    .cta-note {
+      margin-top: 18px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* ─── FOOTER ──────────────────────────────────── */
+    footer {
+      background: var(--text-dark);
+      color: rgba(255,255,255,0.75);
+      padding: 64px 24px 32px;
+    }
+    .footer-top {
+      max-width: 1280px;
+      margin: 0 auto 48px;
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr 1fr 1fr;
+      gap: 48px;
+    }
+    .footer-brand .footer-logo {
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .footer-brand p {
+      font-size: 14px;
+      line-height: 1.65;
+      max-width: 280px;
+      margin-bottom: 24px;
+    }
+    .footer-social {
+      display: flex;
+      gap: 12px;
+    }
+    .footer-social a {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .footer-social a:hover { border-color: var(--white); color: var(--white); }
+    .footer-col h4 {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .footer-col ul { display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a {
+      font-size: 14px;
+      color: rgba(255,255,255,0.65);
+      transition: color 0.15s;
+    }
+    .footer-col ul li a:hover { color: var(--white); }
+
+    .footer-bottom {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .footer-bottom-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-legal {
+      font-size: 11px;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.7;
+      max-width: 860px;
+    }
+    .footer-links-row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .footer-links-row a {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      transition: color 0.15s;
+    }
+    .footer-links-row a:hover { color: var(--white); }
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* ─── MOBILE RESPONSIVE ──────────────────────── */
+    @media (max-width: 1024px) {
+      .categories-grid { grid-template-columns: repeat(3, 1fr); }
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .hero-content { padding: 60px 48px; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-image-wrap { display: none; }
+      .hero-content { padding: 56px 24px; max-width: 100%; }
+      .categories-grid { grid-template-columns: repeat(2, 1fr); }
+      .proof-inner { grid-template-columns: repeat(2, 1fr); }
+      .products-grid { grid-template-columns: 1fr 1fr; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .steps-grid::before { display: none; }
+      .why-grid { grid-template-columns: 1fr; gap: 28px; }
+      .press-logos { gap: 28px; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .footer-bottom-row { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .categories-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .products-grid { grid-template-columns: 1fr; }
+      .proof-inner { grid-template-columns: 1fr 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+    }
+
+    /* ─── MOBILE MENU ────────────────────────────── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--white);
+      z-index: 200;
+      flex-direction: column;
+      padding: 0;
+      overflow-y: auto;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: var(--white);
+    }
+    .mobile-menu-header .nav-logo { font-size: 24px; }
+    .mobile-close {
+      background: none;
+      border: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: var(--text-dark);
+      line-height: 1;
+      padding: 4px;
+    }
+    .mobile-menu-body { padding: 24px; flex: 1; }
+    .mobile-menu-body a {
+      display: block;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-dark);
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      letter-spacing: -0.02em;
+    }
+    .mobile-menu-footer {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .mobile-menu-footer .btn-primary,
+    .mobile-menu-footer .btn-outline { text-align: center; justify-content: center; width: 100%; }
+  </style>
+</head>
+<body>
+
+<!-- ─── ANNOUNCEMENT BAR ─────────────────────────── -->
+<div class="announce-bar">
+  ✨ Free delivery on all orders. <a href="#">Shop now →</a>
+</div>
+
+<!-- ─── NAVIGATION ───────────────────────────────── -->
+<div class="nav-wrapper">
+  <nav>
+    <a href="#" class="nav-logo">hims</a>
+
+    <ul class="nav-links">
+      <li>
+        <a href="#">
+          Hair
+          <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 6l4 4 4-4"/>
+          </svg>
+        </a>
+        <div class="dropdown">
+          <a href="#">Hair Loss Overview</a>
+          <a href="#">Finasteride</a>
+          <a href="#">Minoxidil</a>
+          <a href="#">Hair Loss Shampoo</a>
+          <a href="#">Complete Hair Kit</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">
+          ED &amp; PE
+          <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 6l4 4 4-4"/>
+          </svg>
+        </a>
+        <div class="dropdown">
+          <a href="#">ED Overview</a>
+          <a href="#">Sildenafil (Generic Viagra)</a>
+          <a href="#">Tadalafil (Generic Cialis)</a>
+          <a href="#">Premature Ejaculation</a>
+          <a href="#">Hard Mints</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">
+          Mental Health
+          <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 6l4 4 4-4"/>
+          </svg>
+        </a>
+        <div class="dropdown">
+          <a href="#">Online Therapy</a>
+          <a href="#">Anxiety Treatment</a>
+          <a href="#">Depression Treatment</a>
+          <a href="#">Sleep Aid</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">
+          Skin &amp; Body
+          <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 6l4 4 4-4"/>
+          </svg>
+        </a>
+        <div class="dropdown">
+          <a href="#">Skincare Overview</a>
+          <a href="#">Anti-Aging Cream</a>
+          <a href="#">Acne Treatment</a>
+          <a href="#">Face Wash</a>
+          <a href="#">SPF Moisturizer</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">
+          Weight Loss
+          <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 6l4 4 4-4"/>
+          </svg>
+        </a>
+        <div class="dropdown">
+          <a href="#">Weight Loss Overview</a>
+          <a href="#">Compounded Semaglutide</a>
+          <a href="#">Metformin</a>
+          <a href="#">Wegovy / Ozempic</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">
+          Primary Care
+          <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 6l4 4 4-4"/>
+          </svg>
+        </a>
+        <div class="dropdown">
+          <a href="#">Lab Tests</a>
+          <a href="#">Testosterone</a>
+          <a href="#">Cold &amp; Flu</a>
+          <a href="#">STI Testing</a>
+        </div>
+      </li>
+    </ul>
+
+    <div class="nav-actions">
+      <button class="btn-login">Log in</button>
+      <a href="#" class="btn-start">Get started</a>
+      <button class="hamburger" id="menuToggle" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</div>
+
+<!-- ─── MOBILE MENU ────────────────────────────────── -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-header">
+    <span class="nav-logo">hims</span>
+    <button class="mobile-close" id="menuClose">✕</button>
+  </div>
+  <div class="mobile-menu-body">
+    <a href="#">Hair Loss</a>
+    <a href="#">ED &amp; PE</a>
+    <a href="#">Mental Health</a>
+    <a href="#">Skin &amp; Body</a>
+    <a href="#">Weight Loss</a>
+    <a href="#">Primary Care</a>
+  </div>
+  <div class="mobile-menu-footer">
+    <a href="#" class="btn-primary">Get started</a>
+    <a href="#" class="btn-outline">Log in</a>
+  </div>
+</div>
+
+<!-- ─── HERO ─────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-content">
+    <span class="hero-eyebrow">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor">
+        <circle cx="7" cy="7" r="3.5"/>
+      </svg>
+      Telehealth for men
+    </span>
+    <h1>
+      Unlock better <em>health</em> —<br/>starting with you
+    </h1>
+    <p>
+      Personalized treatments for hair loss, erectile dysfunction, mental health, skincare, weight loss, and more — delivered to your door.
+    </p>
+    <div class="hero-ctas">
+      <a href="#" class="btn-primary">
+        Get started
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M3 8h10M9 4l4 4-4 4"/>
+        </svg>
+      </a>
+      <a href="#" class="btn-outline">See all treatments</a>
+    </div>
+    <div class="hero-trust">
+      <div class="stars">
+        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+      </div>
+      <span><strong>4.5/5</strong> average rating</span>
+      <span>·</span>
+      <span><strong>500,000+</strong> happy customers</span>
+    </div>
+  </div>
+
+  <div class="hero-image-wrap">
+    <div class="hero-image-placeholder">
+      <svg class="person-silhouette" viewBox="0 0 200 380" fill="white">
+        <circle cx="100" cy="70" r="45"/>
+        <path d="M30 200 Q30 140 100 130 Q170 140 170 200 L170 370 L30 370 Z"/>
+        <path d="M30 230 L0 320 L20 325 L50 240Z"/>
+        <path d="M170 230 L200 320 L180 325 L150 240Z"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CATEGORIES ────────────────────────────────── -->
+<section class="categories">
+  <div class="section-header">
+    <div class="section-label">What we treat</div>
+    <h2 class="section-title">Feel your best, every day</h2>
+    <p class="section-subtitle">From hair to mental health to weight loss — we cover the full picture of men's wellness with clinician-backed treatments.</p>
+  </div>
+
+  <div class="categories-grid">
+    <div class="cat-card">
+      <div class="cat-icon" style="background:#e8f4ec;">💊</div>
+      <h3>Hair Loss</h3>
+      <p>Clinically proven treatments</p>
+      <span class="cat-link">Explore →</span>
+    </div>
+    <div class="cat-card">
+      <div class="cat-icon" style="background:#fef0e0;">🔵</div>
+      <h3>ED &amp; PE</h3>
+      <p>Discreet, fast-acting options</p>
+      <span class="cat-link">Explore →</span>
+    </div>
+    <div class="cat-card">
+      <div class="cat-icon" style="background:#f0eefc;">🧠</div>
+      <h3>Mental Health</h3>
+      <p>Therapy &amp; anxiety support</p>
+      <span class="cat-link">Explore →</span>
+    </div>
+    <div class="cat-card">
+      <div class="cat-icon" style="background:#fce8e8;">✨</div>
+      <h3>Skin &amp; Body</h3>
+      <p>Anti-aging &amp; acne care</p>
+      <span class="cat-link">Explore →</span>
+    </div>
+    <div class="cat-card">
+      <div class="cat-icon" style="background:#e0f0fc;">⚡</div>
+      <h3>Weight Loss</h3>
+      <p>GLP-1 &amp; medical support</p>
+      <span class="cat-link">Explore →</span>
+    </div>
+    <div class="cat-card">
+      <div class="cat-icon" style="background:#f5f0e8;">🩺</div>
+      <h3>Primary Care</h3>
+      <p>Labs, STI testing &amp; more</p>
+      <span class="cat-link">Explore →</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SOCIAL PROOF BANNER ───────────────────────── -->
+<div class="proof-banner">
+  <div class="proof-inner">
+    <div class="proof-item">
+      <div class="proof-num">500K+</div>
+      <div class="proof-label">Active subscribers<br/>across the US</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">4.5★</div>
+      <div class="proof-label">Average customer<br/>satisfaction rating</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">50+</div>
+      <div class="proof-label">Treatments available<br/>online today</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">$0</div>
+      <div class="proof-label">Consultation fee<br/>always free</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── FEATURED PRODUCTS ─────────────────────────── -->
+<section class="products">
+  <div class="section-header">
+    <div class="section-label">Top picks</div>
+    <h2 class="section-title">Our most popular treatments</h2>
+    <p class="section-subtitle">Backed by licensed clinicians. Delivered to your door. No awkward waiting rooms.</p>
+  </div>
+
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-img" style="background: linear-gradient(145deg, #e8f4ec, #c8e8d2);">
+        💊
+        <span class="badge">Best Seller</span>
+      </div>
+      <div class="product-info">
+        <div class="product-category">Hair Loss</div>
+        <h3>Finasteride 1mg</h3>
+        <p class="product-desc">The #1 prescribed oral hair loss treatment. Clinically proven to stop hair loss and regrow hair in men.</p>
+        <div class="product-stars">
+          <div class="stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <span class="review-count">(12,430)</span>
+        </div>
+        <div class="product-price">
+          <span class="price-current">$25/mo</span>
+          <span class="price-original">$50/mo</span>
+        </div>
+        <a href="#" class="btn-card">Start free consultation</a>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img" style="background: linear-gradient(145deg, #fef0e0, #fad8b0);">
+        🔵
+        <span class="badge">Most Popular</span>
+      </div>
+      <div class="product-info">
+        <div class="product-category">ED</div>
+        <h3>Sildenafil 50mg</h3>
+        <p class="product-desc">Generic Viagra. The same active ingredient at a fraction of the cost, prescribed online in minutes.</p>
+        <div class="product-stars">
+          <div class="stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <span class="review-count">(9,872)</span>
+        </div>
+        <div class="product-price">
+          <span class="price-current">$3/pill</span>
+          <span class="price-original">$7/pill</span>
+        </div>
+        <a href="#" class="btn-card">Start free consultation</a>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img" style="background: linear-gradient(145deg, #f0eefc, #d8d0f4);">
+        🧠
+        <span class="badge">New</span>
+      </div>
+      <div class="product-info">
+        <div class="product-category">Mental Health</div>
+        <h3>Online Therapy</h3>
+        <p class="product-desc">Connect with a licensed therapist on your schedule. Video, phone, or messaging sessions available.</p>
+        <div class="product-stars">
+          <div class="stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <span class="review-count">(4,215)</span>
+        </div>
+        <div class="product-price">
+          <span class="price-current">$99/mo</span>
+          <span class="price-note">Billed monthly</span>
+        </div>
+        <a href="#" class="btn-card">Get matched today</a>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img" style="background: linear-gradient(145deg, #e0f0fc, #b8d8f4);">
+        ⚡
+        <span class="badge">Trending</span>
+      </div>
+      <div class="product-info">
+        <div class="product-category">Weight Loss</div>
+        <h3>Compounded Semaglutide</h3>
+        <p class="product-desc">The active ingredient in Ozempic® and Wegovy®. GLP-1 injections for medically supervised weight loss.</p>
+        <div class="product-stars">
+          <div class="stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <span class="review-count">(3,104)</span>
+        </div>
+        <div class="product-price">
+          <span class="price-current">$199/mo</span>
+        </div>
+        <a href="#" class="btn-card">Start free consultation</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── HOW IT WORKS ───────────────────────────────── -->
+<section class="how-it-works">
+  <div class="section-header">
+    <div class="section-label">Process</div>
+    <h2 class="section-title">Healthcare, simplified</h2>
+    <p class="section-subtitle">Get started in minutes. No waiting rooms. No awkward conversations. Just real, clinician-backed care.</p>
+  </div>
+
+  <div class="steps-grid">
+    <div class="step">
+      <div class="step-num">
+        📋
+        <span class="step-count">1</span>
+      </div>
+      <h3>Complete an intake form</h3>
+      <p>Answer a few questions about your health, lifestyle, and goals. Takes less than 5 minutes.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">
+        👨‍⚕️
+        <span class="step-count">2</span>
+      </div>
+      <h3>Get matched with a clinician</h3>
+      <p>A licensed provider reviews your intake and, if appropriate, prescribes a personalized treatment plan.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">
+        📦
+        <span class="step-count">3</span>
+      </div>
+      <h3>Receive free delivery</h3>
+      <p>Your treatment ships directly to your door in discreet packaging. Free delivery, always.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TESTIMONIALS ──────────────────────────────── -->
+<section class="testimonials">
+  <div class="section-header">
+    <div class="section-label">Real results</div>
+    <h2 class="section-title">Guys just like you</h2>
+    <p class="section-subtitle">Over 500,000 customers have trusted hims with their health. Here's what some of them have to say.</p>
+  </div>
+
+  <div class="testimonials-track" id="testimonialsTrack">
+    <div class="testimonial-card">
+      <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="t-quote">"I've been using finasteride for about 8 months now and my hair loss has completely stopped. I even notice new growth on my temples. Genuinely life-changing."</p>
+      <div class="t-author">
+        <div class="t-avatar">👦</div>
+        <div class="t-author-info">
+          <div class="t-name">Michael T.</div>
+          <div class="t-detail">Verified customer · Chicago, IL</div>
+        </div>
+      </div>
+      <span class="t-tag">Hair Loss</span>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="t-quote">"The process was so easy and discreet. I got my prescription within 24 hours and everything came in plain packaging. 10/10 would recommend."</p>
+      <div class="t-author">
+        <div class="t-avatar">🧔</div>
+        <div class="t-author-info">
+          <div class="t-name">Jason R.</div>
+          <div class="t-detail">Verified customer · Austin, TX</div>
+        </div>
+      </div>
+      <span class="t-tag">ED</span>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="t-quote">"I was skeptical at first, but my therapist is fantastic. Sessions fit around my work schedule perfectly and I've seen real improvement in my anxiety."</p>
+      <div class="t-author">
+        <div class="t-avatar">🧑</div>
+        <div class="t-author-info">
+          <div class="t-name">David L.</div>
+          <div class="t-detail">Verified customer · New York, NY</div>
+        </div>
+      </div>
+      <span class="t-tag">Mental Health</span>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="t-quote">"Down 28 lbs in 4 months with semaglutide. The medical team checks in regularly and adjusting my dose was seamless. Best decision I've made for my health."</p>
+      <div class="t-author">
+        <div class="t-avatar">👨</div>
+        <div class="t-author-info">
+          <div class="t-name">Carlos M.</div>
+          <div class="t-detail">Verified customer · Miami, FL</div>
+        </div>
+      </div>
+      <span class="t-tag">Weight Loss</span>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+      <p class="t-quote">"The skincare routine they prescribed actually works. My skin is clearer than it's been since my teens. The provider was super helpful and responsive."</p>
+      <div class="t-author">
+        <div class="t-avatar">🧑‍🦱</div>
+        <div class="t-author-info">
+          <div class="t-name">Tyler W.</div>
+          <div class="t-detail">Verified customer · Seattle, WA</div>
+        </div>
+      </div>
+      <span class="t-tag">Skin &amp; Body</span>
+    </div>
+  </div>
+
+  <div class="testimonials-nav">
+    <button onclick="scrollTestimonials(-1)" aria-label="Previous">←</button>
+    <button onclick="scrollTestimonials(1)" aria-label="Next">→</button>
+  </div>
+</section>
+
+<!-- ─── WHY HIMS ────────────────────────────────────── -->
+<section class="why-hims">
+  <div class="section-header">
+    <div class="section-label">Why hims</div>
+    <h2 class="section-title">Healthcare built around you</h2>
+    <p class="section-subtitle">We're changing the way men access health care — making it more accessible, affordable, and stigma-free.</p>
+  </div>
+
+  <div class="why-grid">
+    <div class="why-item">
+      <div class="why-icon">🔒</div>
+      <h3>100% private &amp; discreet</h3>
+      <p>Your medical information is protected. Treatments ship in plain, unmarked packaging. Your privacy is our priority.</p>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">👨‍⚕️</div>
+      <h3>Board-certified clinicians</h3>
+      <p>Our network of licensed providers is available online, so you can get care on your schedule — no waiting rooms.</p>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">🏥</div>
+      <h3>FDA-approved treatments</h3>
+      <p>Every treatment we offer is FDA-approved or clinician-prescribed based on the best available evidence.</p>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">📱</div>
+      <h3>Always-on support</h3>
+      <p>Message your care team any time through our app. Adjust your plan, ask questions, or just check in — they're here.</p>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">💸</div>
+      <h3>Transparent, fair pricing</h3>
+      <p>No surprise bills. No hidden fees. See exactly what you'll pay before you commit — and cancel anytime.</p>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">🚚</div>
+      <h3>Free delivery, always</h3>
+      <p>Your treatments ship for free directly to your door. Refills are automatic so you never run out.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PRESS ───────────────────────────────────────── -->
+<section class="press">
+  <p>As featured in</p>
+  <div class="press-logos">
+    <span class="press-logo serif">The New York Times</span>
+    <span class="press-logo">Forbes</span>
+    <span class="press-logo serif">The Wall Street Journal</span>
+    <span class="press-logo small">Business Insider</span>
+    <span class="press-logo serif">GQ</span>
+    <span class="press-logo small">Men's Health</span>
+  </div>
+</section>
+
+<!-- ─── FAQ ────────────────────────────────────────── -->
+<section class="faq">
+  <div class="section-header">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title">Common questions</h2>
+    <p class="section-subtitle">Everything you need to know about getting started with hims.</p>
+  </div>
+
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        How does the online consultation work?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          You fill out a brief intake form about your health history and symptoms — it takes about 5 minutes. A licensed provider in your state reviews your information and, if appropriate, writes a prescription. You'll hear back within 24 hours. The consultation is always free, and you only pay if you're prescribed a treatment.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Are the treatments covered by insurance?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          Most hims treatments are not covered by insurance, but our prices are often significantly lower than insurance copays for brand-name versions. We accept HSA and FSA cards for eligible health expenses. We'll always be upfront about pricing before you commit.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        How quickly will I see results?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          Results vary by treatment. ED medications can work within 30–60 minutes. Hair loss treatments typically show results after 3–6 months of consistent use. Weight loss results with semaglutide usually appear within the first month. Your provider will set realistic expectations during your consultation.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Can I cancel or pause my subscription?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          Yes — no commitments, no cancellation fees. You can pause, skip a month, or cancel your subscription at any time through your account dashboard or by messaging our support team. We'll never charge you after you cancel.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Is my information kept private?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          Absolutely. We're HIPAA-compliant and take your privacy seriously. Your health information is encrypted and never shared without your explicit consent. Packages arrive in plain, discreet packaging with no indication of what's inside or who it's from.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        What states does hims operate in?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          Hims is available in all 50 US states. However, certain treatments may not be available in all states due to local regulations. Your intake form will confirm availability for your specific location and desired treatment.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── BOTTOM CTA BANNER ──────────────────────────── -->
+<section class="cta-banner">
+  <h2>Your health journey<br/>starts now</h2>
+  <p>Join half a million men who've taken control of their health with hims.</p>
+  <a href="#" class="btn-cta-white">
+    Get started for free
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5">
+      <path d="M3 8h10M9 4l4 4-4 4"/>
+    </svg>
+  </a>
+  <div class="cta-note">Free consultation · Cancel anytime · Ships to all 50 states</div>
+</section>
+
+<!-- ─── FOOTER ─────────────────────────────────────── -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">hims</div>
+      <p>Making healthcare accessible, affordable, and stigma-free for men everywhere.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram">📷</a>
+        <a href="#" aria-label="Twitter/X">✕</a>
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="TikTok">♪</a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Treatments</h4>
+      <ul>
+        <li><a href="#">Hair Loss</a></li>
+        <li><a href="#">Erectile Dysfunction</a></li>
+        <li><a href="#">Premature Ejaculation</a></li>
+        <li><a href="#">Mental Health</a></li>
+        <li><a href="#">Skin &amp; Body</a></li>
+        <li><a href="#">Weight Loss</a></li>
+        <li><a href="#">Primary Care</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Our Clinicians</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Affiliate Program</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="#">Help Center</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Shipping Info</a></li>
+        <li><a href="#">Returns Policy</a></li>
+        <li><a href="#">Manage Subscription</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+        <li><a href="#">HIPAA Notice</a></li>
+        <li><a href="#">Accessibility</a></li>
+        <li><a href="#">Do Not Sell My Info</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-row">
+      <div class="footer-links-row">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Accessibility</a>
+        <a href="#">Sitemap</a>
+      </div>
+      <div class="footer-copy">© 2024 Hims, Inc. All rights reserved.</div>
+    </div>
+    <p class="footer-legal">
+      Hims is not a pharmacy. Hims connects patients with licensed healthcare providers who can prescribe medications where appropriate. Medications are dispensed by licensed pharmacies. IMPORTANT SAFETY INFORMATION: Finasteride may increase the risk of developing a more serious form of prostate cancer. Talk to your healthcare provider about any side effects. This site is intended for US residents only. *These statements have not been evaluated by the Food and Drug Administration. These products are not intended to diagnose, treat, cure, or prevent any disease.
+    </p>
+  </div>
+</footer>
+
+<script>
+  // ─── Mobile menu toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const menuClose  = document.getElementById('menuClose');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  menuToggle.addEventListener('click', () => {
+    mobileMenu.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+  menuClose.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+
+  // ─── FAQ accordion
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // ─── Testimonials scroll
+  function scrollTestimonials(dir) {
+    const track = document.getElementById('testimonialsTrack');
+    track.scrollBy({ left: dir * 370, behavior: 'smooth' });
+  }
+
+  // ─── Nav scroll shadow
+  const navWrapper = document.querySelector('.nav-wrapper');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 8) {
+      navWrapper.style.boxShadow = '0 2px 20px rgba(0,0,0,0.08)';
+    } else {
+      navWrapper.style.boxShadow = '';
+    }
+  });
+</script>
+</body>
+</html>
