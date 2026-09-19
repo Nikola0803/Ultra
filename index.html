@@ -1,0 +1,1702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Align Forever</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap">
+
+<style>
+:root {
+  --amber:       #FFC671;
+  --amber-dk:    #E8A830;
+  --white:       #ffffff;
+  --off-white:   #F8F5EF;
+  --text:        #111111;
+  --text-muted:  #666;
+  --green:       #00a76e;
+  --espresso:    #2B1D0A;
+  --espresso-lt: #3D2B12;
+  --card-dark:   #2B2829;
+  --card-tan:    #C4A268;
+  --card-cream:  #F0EAE0;
+  --card-warm:   #E8DDD0;
+  --teal:        #2E4050;
+  --teal-lt:     #3D5567;
+  --lavender:    #CEDBE5;
+  --yellow-pale: #FDEAA0;
+  --terracotta:  #B06040;
+  --terra-dk:    #8A4A2E;
+  --footer:      #0E0B07;
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans:  'DM Sans', system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body { font-family: var(--sans); color: var(--text); background: var(--white); -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+button { font-family: var(--sans); cursor: pointer; border: none; }
+
+/* ─── RUO BAR ─── */
+.ruo-bar {
+  background: var(--espresso);
+  color: rgba(255,255,255,.55);
+  font-size: 11px;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  padding: 6px 24px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.ruo-bar a { color: var(--amber); text-decoration: underline; }
+
+/* ─── ANNOUNCEMENT BAR ─── */
+.announce {
+  background: var(--amber);
+  padding: 10px 24px;
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--espresso);
+}
+.announce a { font-weight: 700; text-decoration: underline; }
+
+/* ─── NAV ─── */
+nav {
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  height: 60px;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  border-bottom: 1px solid rgba(0,0,0,.07);
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 22px;
+  letter-spacing: -.3px;
+  color: var(--text);
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .03em;
+  color: var(--text-muted);
+  transition: color .15s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-right { display: flex; align-items: center; gap: 20px; }
+.nav-login { font-size: 13px; font-weight: 500; color: var(--text-muted); }
+.nav-cart {
+  background: var(--text);
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  padding: 8px 18px;
+  border-radius: 100px;
+  transition: background .15s;
+}
+.nav-cart:hover { background: #333; }
+.nav-ham { display: none; background: none; flex-direction: column; gap: 5px; padding: 4px; }
+.nav-ham span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; }
+@media (max-width: 768px) { .nav-links { display: none; } .nav-login { display: none; } .nav-ham { display: flex; } }
+
+/* ─── HERO ─── */
+.hero { background: var(--white); padding: 44px 32px 0; }
+.hero-inner { max-width: 1200px; margin: 0 auto; }
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(0,167,110,.1);
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 100px;
+  margin-bottom: 18px;
+}
+.hero-eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+.hero-headline {
+  font-family: var(--serif);
+  font-size: clamp(34px, 5vw, 58px);
+  font-weight: 700;
+  line-height: 1.07;
+  color: var(--text);
+  margin-bottom: 28px;
+  max-width: 560px;
+  text-wrap: balance;
+}
+.hero-headline em { font-style: italic; font-weight: 400; color: var(--espresso); }
+
+/* Category grid */
+.cat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 260px 110px;
+  gap: 8px;
+  margin-top: 0;
+}
+.cat {
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 22px;
+  transition: transform .2s;
+}
+.cat:hover { transform: translateY(-2px); }
+.cat.span2 { grid-column: span 2; }
+.cat.spf   { grid-column: span 3; }
+.cat-espresso { background: var(--espresso); color: #fff; }
+.cat-tan      { background: var(--card-tan); color: var(--espresso); }
+.cat-teal     { background: var(--teal); color: #fff; }
+.cat-cream    { background: var(--card-cream); color: var(--text); }
+.cat-warm     { background: var(--card-warm); color: var(--text); }
+.cat-dark     { background: var(--card-dark); color: #fff; }
+
+.cat-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  opacity: .55;
+  margin-bottom: 5px;
+}
+.cat-name {
+  font-family: var(--serif);
+  font-size: clamp(18px, 2.2vw, 26px);
+  font-weight: 600;
+  line-height: 1.15;
+}
+.cat-sub { font-size: 12px; opacity: .55; margin-top: 4px; }
+.cat-arrow { position: absolute; top: 18px; right: 18px; font-size: 17px; opacity: .4; }
+.cat-pill {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 4px 9px;
+  border-radius: 100px;
+}
+.pill-new  { background: var(--green); color: #fff; }
+.pill-ruo  { background: rgba(255,255,255,.15); color: inherit; }
+
+@media (max-width: 640px) {
+  .cat-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 200px 100px 100px; }
+  .cat.span2 { grid-column: span 2; }
+  .cat.spf   { grid-column: span 2; }
+}
+
+/* ─── BIG FEATURE SECTION (GLP-1) ─── */
+.feature {
+  background: var(--espresso);
+  color: #fff;
+  padding: 84px 32px;
+  position: relative;
+  overflow: hidden;
+}
+.feature::before {
+  content: '';
+  position: absolute;
+  right: -80px; top: -80px;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(196,162,104,.18) 0%, transparent 65%);
+  pointer-events: none;
+}
+.feature-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.feat-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 16px;
+}
+.feat-heading {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4vw, 50px);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+.feat-heading em { font-style: italic; font-weight: 400; color: var(--amber); }
+.feat-body {
+  font-size: 16px;
+  line-height: 1.65;
+  color: rgba(255,255,255,.65);
+  margin-bottom: 32px;
+  max-width: 440px;
+}
+.feat-body strong { color: #fff; font-weight: 500; }
+.feat-btns { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.btn-amber {
+  background: var(--amber);
+  color: var(--espresso);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .03em;
+  padding: 13px 30px;
+  border-radius: 100px;
+  transition: background .15s;
+}
+.btn-amber:hover { background: var(--amber-dk); }
+.btn-ghost {
+  background: transparent;
+  color: rgba(255,255,255,.7);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 12px 24px;
+  border-radius: 100px;
+  border: 1px solid rgba(255,255,255,.22);
+  transition: all .15s;
+}
+.btn-ghost:hover { border-color: rgba(255,255,255,.55); color: #fff; }
+.feat-ruo { font-size: 11px; color: rgba(255,255,255,.28); margin-top: 14px; letter-spacing: .02em; }
+.feat-visual { display: flex; align-items: center; justify-content: center; }
+@media (max-width: 768px) { .feature-inner { grid-template-columns: 1fr; gap: 48px; } .feat-visual { order: -1; } }
+
+/* ─── PRODUCT SCROLL — VIALS ─── */
+.prod-section {
+  padding: 72px 32px;
+  background: var(--off-white);
+}
+.prod-inner { max-width: 1200px; margin: 0 auto; }
+.sec-hdr {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+.sec-h {
+  font-family: var(--serif);
+  font-size: clamp(22px, 3.5vw, 34px);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.15;
+}
+.sec-h em { font-style: italic; font-weight: 400; }
+.sec-link { font-size: 13px; font-weight: 500; color: var(--green); border-bottom: 1px solid rgba(0,167,110,.3); white-space: nowrap; }
+
+.prod-scroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scrollbar-width: none;
+}
+.prod-scroll::-webkit-scrollbar { display: none; }
+
+.pc {
+  flex: 0 0 200px;
+  border-radius: 16px;
+  padding: 22px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  min-height: 310px;
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+  position: relative;
+}
+.pc:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,.12); }
+.pc-tan   { background: var(--card-tan); }
+.pc-dark  { background: var(--card-dark); color: #fff; }
+.pc-espresso { background: var(--espresso); color: #fff; }
+.pc-cream { background: var(--card-cream); }
+.pc-teal  { background: var(--teal); color: #fff; }
+.pc-warm  { background: var(--card-warm); }
+
+.pc-tag {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 100px;
+  align-self: flex-start;
+  margin-bottom: 14px;
+}
+.tag-new   { background: var(--green); color: #fff; }
+.tag-pop   { background: rgba(255,255,255,.25); color: inherit; }
+.tag-ruo   { background: rgba(0,0,0,.1); color: inherit; }
+.tag-amber { background: var(--amber); color: var(--espresso); }
+
+.pc-img { flex: 1; display: flex; align-items: center; justify-content: center; min-height: 140px; }
+.pc-name {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 3px;
+}
+.pc-conc { font-size: 11px; opacity: .55; margin-bottom: 12px; }
+.pc-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0,0,0,.1);
+}
+.pc-foot.light-border { border-top-color: rgba(255,255,255,.12); }
+.pc-price { font-size: 17px; font-weight: 700; }
+.pc-add {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: rgba(0,0,0,.15);
+  color: inherit;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .15s;
+}
+.pc-add:hover { background: rgba(0,0,0,.25); }
+.pc-add-amber { background: var(--amber); color: var(--espresso); }
+.pc-add-amber:hover { background: var(--amber-dk); }
+.pc-add-green { background: var(--green); color: #fff; }
+
+/* ─── PENS SPLIT ─── */
+.pens {
+  background: var(--white);
+  padding: 84px 32px;
+}
+.pens-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.pens-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 14px;
+}
+.pens-h {
+  font-family: var(--serif);
+  font-size: clamp(26px, 3.5vw, 44px);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 18px;
+}
+.pens-h em { font-style: italic; font-weight: 400; }
+.pens-body { font-size: 15px; line-height: 1.65; color: var(--text-muted); margin-bottom: 28px; }
+.pens-list { list-style: none; margin-bottom: 32px; display: flex; flex-direction: column; gap: 9px; }
+.pens-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  font-size: 14px;
+  color: var(--text);
+}
+.check {
+  flex-shrink: 0;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: rgba(0,167,110,.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+.check svg { display: block; }
+.btn-dark {
+  background: var(--text);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .03em;
+  padding: 13px 30px;
+  border-radius: 100px;
+  border: none;
+  transition: background .15s;
+}
+.btn-dark:hover { background: #333; }
+.pens-visual { display: flex; align-items: center; justify-content: center; }
+@media (max-width: 768px) { .pens-inner { grid-template-columns: 1fr; gap: 48px; } }
+
+/* ─── NASAL SPRAYS ─── */
+.nasal {
+  background: var(--espresso);
+  color: #fff;
+  padding: 84px 32px;
+}
+.nasal-inner { max-width: 1200px; margin: 0 auto; }
+.nasal-top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.nasal-h {
+  font-family: var(--serif);
+  font-size: clamp(24px, 4vw, 40px);
+  font-weight: 700;
+  line-height: 1.12;
+}
+.nasal-h em { font-style: italic; font-weight: 400; color: var(--amber); }
+.nasal-link { font-size: 13px; color: rgba(255,255,255,.55); border-bottom: 1px solid rgba(255,255,255,.25); white-space: nowrap; }
+.nasal-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.nc {
+  border-radius: 16px;
+  padding: 28px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  cursor: pointer;
+  transition: transform .2s;
+  min-height: 260px;
+}
+.nc:hover { transform: translateY(-3px); }
+.nc-amber  { background: var(--amber); color: var(--espresso); }
+.nc-tan    { background: var(--card-tan); color: var(--espresso); }
+.nc-teal   { background: var(--teal-lt); color: #fff; }
+.nc-dark   { background: var(--card-dark); color: #fff; }
+.nc-icon   { margin-bottom: 10px; }
+.nc-name   { font-family: var(--serif); font-size: 20px; font-weight: 700; line-height: 1.15; }
+.nc-desc   { font-size: 12px; opacity: .65; line-height: 1.5; flex: 1; }
+.nc-price  { font-size: 15px; font-weight: 700; }
+.nc-ruo    { font-size: 10px; opacity: .4; letter-spacing: .05em; text-transform: uppercase; }
+@media (max-width: 768px) { .nasal-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .nasal-grid { grid-template-columns: 1fr; } }
+
+/* ─── VIDEO SECTION ─── */
+.video-sec { background: var(--card-dark); overflow: hidden; }
+.video-hero {
+  min-height: 560px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.v-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 25% 55%, rgba(196,162,104,.22) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 70% at 75% 25%, rgba(0,167,110,.12) 0%, transparent 60%),
+    linear-gradient(140deg, #0E0B07 0%, #2B1D0A 45%, #1a1208 100%);
+  animation: vPan 20s ease-in-out infinite alternate;
+}
+@keyframes vPan { 0%{transform:scale(1.05) translate(0,0)} 100%{transform:scale(1.05) translate(-2.5%,-1.5%)} }
+.v-grain {
+  position: absolute; inset: 0;
+  opacity: .04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px;
+  pointer-events: none;
+}
+.v-content {
+  position: relative; z-index: 2;
+  text-align: center; color: #fff;
+  padding: 60px 32px;
+  max-width: 680px;
+}
+.v-eye { font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--amber); margin-bottom: 18px; }
+.v-h {
+  font-family: var(--serif);
+  font-size: clamp(28px, 5vw, 54px);
+  font-weight: 700;
+  line-height: 1.08;
+  margin-bottom: 18px;
+}
+.v-h em { font-style: italic; font-weight: 400; color: var(--amber); }
+.v-sub { font-size: 15px; color: rgba(255,255,255,.55); line-height: 1.6; margin-bottom: 36px; max-width: 440px; margin-left: auto; margin-right: auto; }
+.play {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 76px; height: 76px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.1);
+  backdrop-filter: blur(8px);
+  border: 1.5px solid rgba(255,255,255,.25);
+  cursor: pointer;
+  transition: all .2s;
+  margin-bottom: 12px;
+}
+.play:hover { background: rgba(196,162,104,.35); border-color: var(--amber); transform: scale(1.06); }
+.play svg { margin-left: 5px; }
+.play-label { font-size: 12px; color: rgba(255,255,255,.4); letter-spacing: .06em; }
+
+/* Video strips */
+.v-strip { display: flex; }
+.vsc {
+  flex: 1;
+  position: relative;
+  min-height: 280px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.vsc::after { content:''; position:absolute; inset:0; background:rgba(0,0,0,.35); transition:background .2s; }
+.vsc:hover::after { background: rgba(0,0,0,.18); }
+.vsc-bg { position: absolute; inset: 0; transition: transform .4s; }
+.vsc:hover .vsc-bg { transform: scale(1.04); }
+.vs1 .vsc-bg { background: linear-gradient(135deg, var(--espresso) 0%, var(--espresso-lt) 100%); }
+.vs2 .vsc-bg { background: linear-gradient(135deg, var(--teal) 0%, var(--teal-lt) 100%); }
+.vs3 .vsc-bg { background: linear-gradient(135deg, #3A2518 0%, #6A4028 100%); }
+.vsc-body {
+  position: relative; z-index: 2;
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: #fff;
+}
+.vsc-play-btn {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.vsc-eye { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.45); margin-bottom: 5px; margin-top: auto; padding-top: 24px; }
+.vsc-title { font-family: var(--serif); font-size: 18px; font-weight: 700; line-height: 1.2; }
+.vsc-dur { font-size: 11px; color: rgba(255,255,255,.38); margin-top: 4px; }
+@media (max-width: 600px) { .v-strip { flex-direction: column; } }
+
+/* Video modal */
+.vmodal {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,.9); z-index: 1000;
+  align-items: center; justify-content: center; padding: 32px;
+}
+.vmodal.open { display: flex; }
+.vmodal-inner { width: 100%; max-width: 800px; position: relative; }
+.vmodal-x { position: absolute; top: -42px; right: 0; background: none; border: none; color: rgba(255,255,255,.5); font-size: 30px; cursor: pointer; }
+.vmodal-ph {
+  width: 100%; aspect-ratio: 16/9;
+  background: var(--espresso);
+  border-radius: 12px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 14px; color: rgba(255,255,255,.45);
+}
+.vmodal-ph span { font-size: 14px; letter-spacing: .04em; }
+
+/* ─── TABLETS SCROLL ─── */
+.tablets-section {
+  background: var(--card-cream);
+  padding: 72px 32px;
+}
+
+/* ─── STATS ─── */
+.stats {
+  background: var(--terracotta);
+  color: #fff;
+  padding: 52px 32px;
+}
+.stats-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  text-align: center;
+}
+.stat-n {
+  font-family: var(--serif);
+  font-size: clamp(34px, 5vw, 54px);
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 8px;
+  color: var(--amber);
+}
+.stat-l { font-size: 13px; opacity: .7; line-height: 1.45; }
+@media (max-width: 600px) { .stats-inner { grid-template-columns: 1fr 1fr; } }
+
+/* ─── HOW IT WORKS ─── */
+.how { background: var(--white); padding: 80px 32px; }
+.how-inner { max-width: 1100px; margin: 0 auto; }
+.how-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px;
+  margin-top: 52px;
+}
+.step-n {
+  font-family: var(--serif);
+  font-size: 56px;
+  font-weight: 700;
+  font-style: italic;
+  color: rgba(196,162,104,.3);
+  line-height: 1;
+  margin-bottom: 14px;
+}
+.step-h { font-family: var(--serif); font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+.step-p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+@media (max-width: 640px) { .how-steps { grid-template-columns: 1fr; } }
+
+/* ─── TESTIMONIALS ─── */
+.testi { background: var(--off-white); padding: 80px 32px; }
+.testi-inner { max-width: 1200px; margin: 0 auto; }
+.testi-scroll {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: none;
+  margin-top: 40px;
+}
+.testi-scroll::-webkit-scrollbar { display: none; }
+.tc {
+  flex: 0 0 290px;
+  background: var(--white);
+  border-radius: 18px;
+  padding: 26px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.tc-stars { color: var(--amber); font-size: 14px; letter-spacing: 2px; }
+.tc-quote {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-style: italic;
+  color: var(--text);
+  line-height: 1.55;
+  flex: 1;
+}
+.tc-author { display: flex; align-items: center; gap: 11px; }
+.tc-av {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: var(--card-tan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--espresso);
+  flex-shrink: 0;
+}
+.tc-name { font-size: 13px; font-weight: 700; }
+.tc-cred { font-size: 11px; color: var(--text-muted); }
+.tc-note { font-size: 10px; color: var(--text-muted); padding-top: 8px; border-top: 1px solid rgba(0,0,0,.07); }
+
+/* ─── COA / QUALITY ─── */
+.coa-section { background: var(--espresso); color: #fff; padding: 80px 32px; }
+.coa-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.coa-label { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--amber); margin-bottom: 14px; }
+.coa-h { font-family: var(--serif); font-size: clamp(24px, 3.5vw, 40px); font-weight: 700; line-height: 1.12; margin-bottom: 20px; }
+.coa-h em { font-style: italic; font-weight: 400; color: var(--amber); }
+.coa-body { font-size: 15px; color: rgba(255,255,255,.6); line-height: 1.65; margin-bottom: 28px; }
+.coa-badges { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 32px; }
+.cbadge {
+  display: flex; align-items: center; gap: 7px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 100px;
+  padding: 7px 14px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.cdot { width: 7px; height: 7px; border-radius: 50%; background: var(--amber); }
+.coa-card {
+  background: rgba(255,199,113,.08);
+  border: 1px solid rgba(255,199,113,.2);
+  border-radius: 16px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.coa-card-h { font-family: var(--serif); font-size: 20px; font-weight: 700; }
+.coa-card-body { font-size: 13px; color: rgba(255,255,255,.5); line-height: 1.55; }
+.coa-mono {
+  background: rgba(0,0,0,.25);
+  border-radius: 10px;
+  padding: 16px;
+  font-size: 12px;
+  font-family: monospace;
+  color: rgba(255,255,255,.5);
+  line-height: 1.85;
+}
+.coa-mono .hl { color: var(--amber); font-weight: bold; }
+.coa-mono .ok { color: #00a76e; }
+.coa-btn {
+  background: var(--amber);
+  color: var(--espresso);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  padding: 11px 22px;
+  border-radius: 100px;
+  border: none;
+  align-self: flex-start;
+  cursor: pointer;
+  transition: background .15s;
+}
+.coa-btn:hover { background: var(--amber-dk); }
+@media (max-width: 768px) { .coa-inner { grid-template-columns: 1fr; gap: 40px; } }
+
+/* ─── NEWSLETTER ─── */
+.newsletter { background: var(--card-tan); padding: 80px 32px; text-align: center; }
+.nl-inner { max-width: 520px; margin: 0 auto; }
+.nl-h { font-family: var(--serif); font-size: clamp(26px, 4vw, 40px); font-weight: 700; color: var(--espresso); line-height: 1.12; margin-bottom: 14px; }
+.nl-h em { font-style: italic; font-weight: 400; }
+.nl-sub { font-size: 14px; color: rgba(43,29,10,.65); margin-bottom: 28px; line-height: 1.55; }
+.nl-form { display: flex; gap: 10px; max-width: 420px; margin: 0 auto; }
+.nl-input {
+  flex: 1;
+  padding: 13px 18px;
+  border: 1.5px solid rgba(43,29,10,.2);
+  border-radius: 100px;
+  font-family: var(--sans);
+  font-size: 14px;
+  background: rgba(255,255,255,.6);
+  color: var(--text);
+  outline: none;
+}
+.nl-input:focus { border-color: var(--espresso); }
+.nl-input::placeholder { color: rgba(43,29,10,.4); }
+@media (max-width: 480px) { .nl-form { flex-direction: column; } }
+
+/* ─── FOOTER ─── */
+footer { background: var(--footer); color: rgba(255,255,255,.45); padding: 64px 32px 40px; position: relative; overflow: hidden; }
+.footer-wm {
+  position: absolute;
+  bottom: -30px; right: -10px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(100px, 16vw, 200px);
+  font-weight: 700;
+  color: rgba(255,255,255,.025);
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+.footer-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  margin-bottom: 36px;
+}
+.footer-logo { font-family: var(--serif); font-style: italic; font-size: 26px; font-weight: 500; color: rgba(255,255,255,.85); margin-bottom: 14px; }
+.footer-brand p { font-size: 13px; line-height: 1.65; max-width: 280px; }
+.footer-ruo {
+  margin-top: 16px;
+  padding: 14px 16px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: 10px;
+  font-size: 11px;
+  color: rgba(255,255,255,.3);
+  line-height: 1.6;
+}
+.footer-col h4 { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.6); margin-bottom: 18px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col ul a { font-size: 13px; transition: color .15s; }
+.footer-col ul a:hover { color: rgba(255,255,255,.8); }
+.footer-legal { display: flex; flex-wrap: wrap; gap: 10px 22px; font-size: 11px; color: rgba(255,255,255,.25); align-items: center; }
+.footer-legal a:hover { color: rgba(255,255,255,.55); }
+@media (max-width: 768px) { .footer-top { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .footer-top { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<!-- RUO BAR -->
+<div class="ruo-bar">
+  <span>For Research Use Only — Not for human use. Not for diagnostic or therapeutic purposes.</span>
+  <a href="#">Research Terms</a>
+</div>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce">
+  <span>New: Tirzepatide 10mg vials — limited batch now in stock.</span>
+  <a href="#">Shop Now →</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Align Forever</a>
+  <ul class="nav-links">
+    <li><a href="#">Peptide Vials</a></li>
+    <li><a href="#">Pens</a></li>
+    <li><a href="#">Nasal Sprays</a></li>
+    <li><a href="#">Tablets</a></li>
+    <li><a href="#">Research</a></li>
+    <li><a href="#">About</a></li>
+  </ul>
+  <div class="nav-right">
+    <span class="nav-login">Log in</span>
+    <button class="nav-cart">Cart (0)</button>
+    <button class="nav-ham" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Research Use Only</div>
+    <h1 class="hero-headline">Research-grade<br>peptides.<br><em>Precisely formulated.</em></h1>
+
+    <div class="cat-grid">
+      <!-- GLP-1 big card -->
+      <div class="cat cat-espresso span2">
+        <span class="cat-pill pill-new">New Batch</span>
+        <span class="cat-arrow">↗</span>
+        <!-- Vial illustration inside card -->
+        <svg style="position:absolute;right:24px;bottom:0;opacity:.25;pointer-events:none" width="70" height="160" viewBox="0 0 70 160" fill="none">
+          <rect x="15" y="16" width="40" height="125" rx="20" fill="white"/>
+          <rect x="22" y="10" width="26" height="12" rx="6" fill="white" opacity=".7"/>
+          <rect x="25" y="4" width="20" height="9" rx="4" fill="white" opacity=".4"/>
+          <rect x="15" y="115" width="40" height="26" rx="8" fill="white" opacity=".4"/>
+        </svg>
+        <div>
+          <div class="cat-label">GLP-1 Peptides</div>
+          <div class="cat-name">Semaglutide &amp;<br>Tirzepatide</div>
+          <div class="cat-sub">Lyophilized powder · 2mg–10mg vials</div>
+        </div>
+      </div>
+      <!-- Recovery spans 1 col, 2 rows -->
+      <div class="cat cat-tan" style="grid-row: span 2;">
+        <span class="cat-arrow">↗</span>
+        <div>
+          <div class="cat-label">Recovery</div>
+          <div class="cat-name">BPC-157 &amp; TB-500</div>
+          <div class="cat-sub">Tissue repair peptides</div>
+        </div>
+      </div>
+      <!-- Cognitive -->
+      <div class="cat cat-cream">
+        <span class="cat-arrow">↗</span>
+        <div>
+          <div class="cat-label">Cognitive</div>
+          <div class="cat-name">Selank &amp; Semax</div>
+        </div>
+      </div>
+      <!-- Sexual Health -->
+      <div class="cat cat-teal">
+        <span class="cat-arrow">↗</span>
+        <div>
+          <div class="cat-label">Sexual Health</div>
+          <div class="cat-name">PT-141</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GLP-1 FEATURE -->
+<section class="feature">
+  <div class="feature-inner">
+    <div>
+      <div class="feat-label">Featured Research Compound</div>
+      <h2 class="feat-heading">GLP-1 peptide vials.<br><em>The new standard.</em></h2>
+      <p class="feat-body">
+        <strong>Semaglutide</strong> and <strong>Tirzepatide</strong> lyophilized peptide vials —
+        produced in ISO-certified facilities, independently HPLC-verified, Certificate of Analysis
+        on every batch. The most-researched metabolic peptides. Now in stock.
+      </p>
+      <div class="feat-btns">
+        <button class="btn-amber">Explore GLP-1 Vials</button>
+        <button class="btn-ghost">Download COA</button>
+      </div>
+      <p class="feat-ruo">For Research Use Only. Not for human use or diagnostic purposes.</p>
+    </div>
+    <div class="feat-visual">
+      <!-- Photorealistic vial pair SVG -->
+      <svg width="280" height="380" viewBox="0 0 280 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Shadow -->
+        <ellipse cx="145" cy="368" rx="85" ry="10" fill="rgba(0,0,0,.35)"/>
+
+        <!-- BACK VIAL (slightly offset) -->
+        <!-- Glass body -->
+        <rect x="155" y="60" width="70" height="275" rx="15" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
+        <!-- Liquid -->
+        <rect x="157" y="190" width="66" height="142" rx="2" fill="rgba(196,162,104,.15)"/>
+        <!-- Cap -->
+        <rect x="162" y="46" width="56" height="18" rx="7" fill="rgba(196,162,104,.35)"/>
+        <rect x="167" y="40" width="46" height="12" rx="5" fill="rgba(196,162,104,.25)"/>
+        <!-- Stopper -->
+        <rect x="157" y="182" width="66" height="12" rx="2" fill="rgba(100,70,30,.3)"/>
+        <!-- Label -->
+        <rect x="159" y="130" width="62" height="48" rx="3" fill="rgba(255,255,255,.06)"/>
+        <rect x="163" y="137" width="28" height="3" rx="1.5" fill="rgba(196,162,104,.45)"/>
+        <rect x="163" y="144" width="44" height="2.5" rx="1" fill="rgba(255,255,255,.2)"/>
+        <rect x="163" y="150" width="34" height="2.5" rx="1" fill="rgba(255,255,255,.15)"/>
+        <rect x="163" y="156" width="24" height="2.5" rx="1" fill="rgba(255,255,255,.12)"/>
+        <!-- Shine -->
+        <rect x="162" y="70" width="8" height="90" rx="4" fill="rgba(255,255,255,.07)"/>
+
+        <!-- FRONT VIAL (main) -->
+        <!-- Glass body -->
+        <rect x="65" y="45" width="82" height="305" rx="18" fill="rgba(255,255,255,.1)" stroke="rgba(255,255,255,.28)" stroke-width="1.5"/>
+        <!-- Liquid fill - warm amber tint -->
+        <rect x="68" y="210" width="76" height="138" rx="2" fill="rgba(196,162,104,.22)"/>
+        <!-- Stopper rubber -->
+        <rect x="67" y="200" width="78" height="14" rx="3" fill="rgba(80,50,15,.45)"/>
+        <!-- Cap - aluminum crimp -->
+        <rect x="72" y="28" width="68" height="22" rx="9" fill="rgba(196,162,104,.55)"/>
+        <rect x="79" y="22" width="54" height="14" rx="6" fill="rgba(196,162,104,.4)"/>
+        <!-- Inner cap detail -->
+        <rect x="85" y="28" width="42" height="4" rx="2" fill="rgba(255,255,255,.12)"/>
+        <!-- Label band -->
+        <rect x="69" y="100" width="74" height="95" rx="4" fill="rgba(255,255,255,.07)"/>
+        <!-- Label text lines -->
+        <rect x="76" y="110" width="40" height="4" rx="2" fill="rgba(255,199,113,.6)"/>
+        <text x="76" y="125" font-family="system-ui, sans-serif" font-size="7" fill="rgba(255,255,255,.55)" font-weight="700" letter-spacing=".04em">SEMAGLUTIDE</text>
+        <text x="76" y="136" font-family="system-ui, sans-serif" font-size="6" fill="rgba(255,255,255,.35)">5mg / Lyophilized Powder</text>
+        <rect x="76" y="141" width="56" height="1.5" rx=".75" fill="rgba(255,255,255,.1)"/>
+        <text x="76" y="151" font-family="system-ui, sans-serif" font-size="5.5" fill="rgba(255,255,255,.28)">For Research Use Only</text>
+        <text x="76" y="160" font-family="system-ui, sans-serif" font-size="5.5" fill="rgba(255,255,255,.22)">Store at -20°C · Lot: AF-2609</text>
+        <rect x="76" y="167" width="28" height="2" rx="1" fill="rgba(255,199,113,.2)"/>
+        <rect x="76" y="173" width="44" height="2" rx="1" fill="rgba(255,255,255,.1)"/>
+        <rect x="76" y="179" width="36" height="2" rx="1" fill="rgba(255,255,255,.08)"/>
+        <!-- Bright highlight / glass reflection -->
+        <rect x="73" y="55" width="11" height="140" rx="5.5" fill="rgba(255,255,255,.09)"/>
+        <!-- Subtle right reflection -->
+        <rect x="131" y="75" width="5" height="100" rx="2.5" fill="rgba(255,255,255,.04)"/>
+        <!-- Bottom base -->
+        <rect x="68" y="335" width="76" height="15" rx="6" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+
+        <!-- Measurement lines on glass -->
+        <line x1="68" y1="240" x2="74" y2="240" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
+        <line x1="68" y1="265" x2="74" y2="265" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
+        <line x1="68" y1="290" x2="74" y2="290" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
+        <line x1="68" y1="315" x2="74" y2="315" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- PEPTIDE VIALS SCROLL -->
+<section class="prod-section">
+  <div class="prod-inner">
+    <div class="sec-hdr">
+      <h2 class="sec-h">Peptide vials.<br><em>Full catalog.</em></h2>
+      <a href="#" class="sec-link">View all →</a>
+    </div>
+    <div class="prod-scroll">
+
+      <!-- BPC-157 -->
+      <div class="pc pc-tan">
+        <span class="pc-tag tag-pop">Most Popular</span>
+        <div class="pc-img">
+          <svg width="56" height="130" viewBox="0 0 56 130" fill="none">
+            <ellipse cx="28" cy="126" rx="20" ry="3.5" fill="rgba(43,29,10,.18)"/>
+            <rect x="8" y="18" width="40" height="105" rx="10" fill="rgba(255,255,255,.45)" stroke="rgba(43,29,10,.25)" stroke-width="1.2"/>
+            <rect x="10" y="72" width="36" height="50" rx="2" fill="rgba(196,162,104,.3)"/>
+            <rect x="8" y="64" width="40" height="10" rx="2" fill="rgba(80,50,15,.3)"/>
+            <rect x="14" y="10" width="28" height="12" rx="6" fill="rgba(196,162,104,.7)"/>
+            <rect x="17" y="5" width="22" height="9" rx="4" fill="rgba(196,162,104,.5)"/>
+            <rect x="12" y="30" width="32" height="30" rx="2" fill="rgba(255,255,255,.25)"/>
+            <rect x="15" y="35" width="18" height="2.5" rx="1" fill="rgba(43,29,10,.5)"/>
+            <text x="15" y="46" font-family="system-ui" font-size="5.5" font-weight="700" fill="rgba(43,29,10,.6)" letter-spacing=".05em">BPC-157</text>
+            <text x="15" y="54" font-family="system-ui" font-size="5" fill="rgba(43,29,10,.35)">5mg · RUO</text>
+            <rect x="10" y="25" width="6" height="60" rx="3" fill="rgba(255,255,255,.18)"/>
+          </svg>
+        </div>
+        <div class="pc-name">BPC-157</div>
+        <div class="pc-conc">5mg · Body Protective Compound</div>
+        <div class="pc-foot"><span class="pc-price">$49</span><button class="pc-add">+</button></div>
+      </div>
+
+      <!-- TB-500 -->
+      <div class="pc pc-cream">
+        <span class="pc-tag tag-ruo">RUO</span>
+        <div class="pc-img">
+          <svg width="56" height="130" viewBox="0 0 56 130" fill="none">
+            <ellipse cx="28" cy="126" rx="20" ry="3.5" fill="rgba(0,0,0,.1)"/>
+            <rect x="8" y="18" width="40" height="105" rx="10" fill="rgba(255,255,255,.6)" stroke="rgba(0,0,0,.15)" stroke-width="1.2"/>
+            <rect x="10" y="72" width="36" height="50" rx="2" fill="rgba(200,180,150,.25)"/>
+            <rect x="8" y="64" width="40" height="10" rx="2" fill="rgba(60,40,10,.2)"/>
+            <rect x="14" y="10" width="28" height="12" rx="6" fill="rgba(100,80,40,.45)"/>
+            <rect x="17" y="5" width="22" height="9" rx="4" fill="rgba(100,80,40,.3)"/>
+            <rect x="12" y="30" width="32" height="30" rx="2" fill="rgba(240,230,210,.5)"/>
+            <rect x="15" y="35" width="14" height="2.5" rx="1" fill="rgba(0,0,0,.35)"/>
+            <text x="15" y="46" font-family="system-ui" font-size="5.5" font-weight="700" fill="rgba(0,0,0,.5)" letter-spacing=".05em">TB-500</text>
+            <text x="15" y="54" font-family="system-ui" font-size="5" fill="rgba(0,0,0,.3)">5mg · Thymosin β4</text>
+            <rect x="10" y="25" width="6" height="60" rx="3" fill="rgba(255,255,255,.4)"/>
+          </svg>
+        </div>
+        <div class="pc-name">TB-500</div>
+        <div class="pc-conc">5mg · Thymosin Beta-4</div>
+        <div class="pc-foot"><span class="pc-price">$59</span><button class="pc-add">+</button></div>
+      </div>
+
+      <!-- Semaglutide -->
+      <div class="pc pc-espresso">
+        <span class="pc-tag tag-amber">New Batch</span>
+        <div class="pc-img">
+          <svg width="56" height="130" viewBox="0 0 56 130" fill="none">
+            <ellipse cx="28" cy="126" rx="20" ry="3.5" fill="rgba(0,0,0,.35)"/>
+            <rect x="8" y="18" width="40" height="105" rx="10" fill="rgba(255,255,255,.1)" stroke="rgba(255,199,113,.35)" stroke-width="1.2"/>
+            <rect x="10" y="72" width="36" height="50" rx="2" fill="rgba(196,162,104,.2)"/>
+            <rect x="8" y="64" width="40" height="10" rx="2" fill="rgba(80,50,15,.5)"/>
+            <rect x="14" y="10" width="28" height="12" rx="6" fill="rgba(255,199,113,.5)"/>
+            <rect x="17" y="5" width="22" height="9" rx="4" fill="rgba(255,199,113,.35)"/>
+            <rect x="12" y="30" width="32" height="30" rx="2" fill="rgba(255,255,255,.05)"/>
+            <rect x="15" y="35" width="20" height="2.5" rx="1" fill="rgba(255,199,113,.6)"/>
+            <text x="15" y="46" font-family="system-ui" font-size="5.5" font-weight="700" fill="rgba(255,199,113,.85)" letter-spacing=".04em">SEMAGLUTIDE</text>
+            <text x="15" y="54" font-family="system-ui" font-size="5" fill="rgba(255,255,255,.3)">5mg · GLP-1 RA</text>
+            <rect x="10" y="25" width="6" height="60" rx="3" fill="rgba(255,255,255,.07)"/>
+          </svg>
+        </div>
+        <div class="pc-name">Semaglutide</div>
+        <div class="pc-conc" style="color:rgba(255,255,255,.45)">5mg · GLP-1 Receptor Agonist</div>
+        <div class="pc-foot light-border"><span class="pc-price">$89</span><button class="pc-add pc-add-amber">+</button></div>
+      </div>
+
+      <!-- Tirzepatide -->
+      <div class="pc pc-espresso">
+        <span class="pc-tag tag-amber">New</span>
+        <div class="pc-img">
+          <svg width="56" height="130" viewBox="0 0 56 130" fill="none">
+            <ellipse cx="28" cy="126" rx="20" ry="3.5" fill="rgba(0,0,0,.35)"/>
+            <rect x="6" y="18" width="44" height="105" rx="11" fill="rgba(255,255,255,.08)" stroke="rgba(255,199,113,.3)" stroke-width="1.2"/>
+            <rect x="8" y="72" width="40" height="50" rx="2" fill="rgba(196,162,104,.18)"/>
+            <rect x="6" y="64" width="44" height="10" rx="2" fill="rgba(80,50,15,.5)"/>
+            <rect x="12" y="10" width="32" height="12" rx="6" fill="rgba(255,199,113,.45)"/>
+            <rect x="16" y="5" width="24" height="9" rx="4" fill="rgba(255,199,113,.3)"/>
+            <rect x="10" y="30" width="36" height="30" rx="2" fill="rgba(255,255,255,.04)"/>
+            <rect x="13" y="35" width="22" height="2.5" rx="1" fill="rgba(255,199,113,.55)"/>
+            <text x="13" y="46" font-family="system-ui" font-size="5.5" font-weight="700" fill="rgba(255,199,113,.8)" letter-spacing=".03em">TIRZEPATIDE</text>
+            <text x="13" y="54" font-family="system-ui" font-size="5" fill="rgba(255,255,255,.28)">10mg · Dual GIP/GLP-1</text>
+            <rect x="8" y="25" width="6" height="60" rx="3" fill="rgba(255,255,255,.06)"/>
+          </svg>
+        </div>
+        <div class="pc-name">Tirzepatide</div>
+        <div class="pc-conc" style="color:rgba(255,255,255,.45)">10mg · Dual GIP/GLP-1 Agonist</div>
+        <div class="pc-foot light-border"><span class="pc-price">$129</span><button class="pc-add pc-add-amber">+</button></div>
+      </div>
+
+      <!-- CJC-1295 -->
+      <div class="pc pc-dark">
+        <span class="pc-tag tag-pop" style="background:rgba(255,255,255,.12); color:#fff;">Research</span>
+        <div class="pc-img">
+          <svg width="56" height="130" viewBox="0 0 56 130" fill="none">
+            <ellipse cx="28" cy="126" rx="20" ry="3.5" fill="rgba(0,0,0,.4)"/>
+            <rect x="8" y="18" width="40" height="105" rx="10" fill="rgba(255,255,255,.07)" stroke="rgba(255,255,255,.15)" stroke-width="1.2"/>
+            <rect x="10" y="72" width="36" height="50" rx="2" fill="rgba(255,255,255,.07)"/>
+            <rect x="8" y="64" width="40" height="10" rx="2" fill="rgba(0,0,0,.4)"/>
+            <rect x="14" y="10" width="28" height="12" rx="6" fill="rgba(255,255,255,.2)"/>
+            <rect x="17" y="5" width="22" height="9" rx="4" fill="rgba(255,255,255,.12)"/>
+            <rect x="12" y="30" width="32" height="30" rx="2" fill="rgba(255,255,255,.04)"/>
+            <rect x="15" y="35" width="16" height="2.5" rx="1" fill="rgba(255,255,255,.35)"/>
+            <text x="15" y="44" font-family="system-ui" font-size="4.8" font-weight="700" fill="rgba(255,255,255,.65)" letter-spacing=".04em">CJC-1295</text>
+            <text x="15" y="52" font-family="system-ui" font-size="4.5" fill="rgba(255,255,255,.3)">+Ipamorelin Blend</text>
+            <text x="15" y="60" font-family="system-ui" font-size="4.5" fill="rgba(255,255,255,.2)">10mg · RUO</text>
+            <rect x="10" y="25" width="6" height="60" rx="3" fill="rgba(255,255,255,.06)"/>
+          </svg>
+        </div>
+        <div class="pc-name">CJC-1295 / Ipamorelin</div>
+        <div class="pc-conc" style="color:rgba(255,255,255,.4)">10mg blend · GHRH + GHS</div>
+        <div class="pc-foot light-border"><span class="pc-price">$79</span><button class="pc-add">+</button></div>
+      </div>
+
+      <!-- AOD-9604 -->
+      <div class="pc pc-tan">
+        <span class="pc-tag tag-ruo">RUO</span>
+        <div class="pc-img">
+          <svg width="56" height="130" viewBox="0 0 56 130" fill="none">
+            <ellipse cx="28" cy="126" rx="20" ry="3.5" fill="rgba(43,29,10,.2)"/>
+            <rect x="8" y="18" width="40" height="105" rx="10" fill="rgba(255,255,255,.5)" stroke="rgba(43,29,10,.2)" stroke-width="1.2"/>
+            <rect x="10" y="72" width="36" height="50" rx="2" fill="rgba(196,162,104,.35)"/>
+            <rect x="8" y="64" width="40" height="10" rx="2" fill="rgba(80,50,15,.28)"/>
+            <rect x="14" y="10" width="28" height="12" rx="6" fill="rgba(80,50,15,.4)"/>
+            <rect x="17" y="5" width="22" height="9" rx="4" fill="rgba(80,50,15,.25)"/>
+            <rect x="12" y="30" width="32" height="30" rx="2" fill="rgba(255,255,255,.3)"/>
+            <rect x="15" y="35" width="18" height="2.5" rx="1" fill="rgba(43,29,10,.45)"/>
+            <text x="15" y="46" font-family="system-ui" font-size="5.5" font-weight="700" fill="rgba(43,29,10,.55)" letter-spacing=".04em">AOD-9604</text>
+            <text x="15" y="54" font-family="system-ui" font-size="5" fill="rgba(43,29,10,.35)">5mg · Fragment</text>
+            <rect x="10" y="25" width="6" height="60" rx="3" fill="rgba(255,255,255,.25)"/>
+          </svg>
+        </div>
+        <div class="pc-name">AOD-9604</div>
+        <div class="pc-conc">5mg · Fat Metabolism Fragment</div>
+        <div class="pc-foot"><span class="pc-price">$54</span><button class="pc-add">+</button></div>
+      </div>
+
+      <!-- Epithalon -->
+      <div class="pc pc-cream">
+        <span class="pc-tag tag-ruo">Research</span>
+        <div class="pc-img">
+          <svg width="56" height="130" viewBox="0 0 56 130" fill="none">
+            <ellipse cx="28" cy="126" rx="20" ry="3.5" fill="rgba(0,0,0,.1)"/>
+            <rect x="8" y="18" width="40" height="105" rx="10" fill="rgba(255,255,255,.65)" stroke="rgba(0,0,0,.12)" stroke-width="1.2"/>
+            <rect x="10" y="72" width="36" height="50" rx="2" fill="rgba(180,160,130,.2)"/>
+            <rect x="8" y="64" width="40" height="10" rx="2" fill="rgba(60,40,10,.18)"/>
+            <rect x="14" y="10" width="28" height="12" rx="6" fill="rgba(176,96,64,.4)"/>
+            <rect x="17" y="5" width="22" height="9" rx="4" fill="rgba(176,96,64,.25)"/>
+            <rect x="12" y="30" width="32" height="30" rx="2" fill="rgba(255,255,255,.4)"/>
+            <rect x="15" y="35" width="16" height="2.5" rx="1" fill="rgba(0,0,0,.3)"/>
+            <text x="15" y="46" font-family="system-ui" font-size="5.5" font-weight="700" fill="rgba(0,0,0,.48)" letter-spacing=".04em">EPITHALON</text>
+            <text x="15" y="54" font-family="system-ui" font-size="5" fill="rgba(0,0,0,.28)">10mg · Tetrapeptide</text>
+            <rect x="10" y="25" width="6" height="60" rx="3" fill="rgba(255,255,255,.4)"/>
+          </svg>
+        </div>
+        <div class="pc-name">Epithalon</div>
+        <div class="pc-conc">10mg · Tetrapeptide</div>
+        <div class="pc-foot"><span class="pc-price">$65</span><button class="pc-add">+</button></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PEPTIDE PENS SPLIT -->
+<section class="pens">
+  <div class="pens-inner">
+    <div>
+      <div class="pens-label">Precision Delivery System</div>
+      <h2 class="pens-h">Pre-filled peptide pens.<br><em>Ready to research.</em></h2>
+      <p class="pens-body">Multi-dose injector pens pre-loaded with research-grade lyophilized peptides. Precision-dial dosing. Tamper-evident caps. Cold-chain shipped with a Certificate of Analysis.</p>
+      <ul class="pens-list">
+        <li><div class="check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5.5l2 2 4-4" stroke="#00a76e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Precision multi-dose dial mechanism</li>
+        <li><div class="check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5.5l2 2 4-4" stroke="#00a76e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Pre-loaded with lyophilized peptide cartridge</li>
+        <li><div class="check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5.5l2 2 4-4" stroke="#00a76e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Tamper-evident with serialized batch tracking</li>
+        <li><div class="check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5.5l2 2 4-4" stroke="#00a76e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Ships cold — Certificate of Analysis included</li>
+        <li><div class="check"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5.5l2 2 4-4" stroke="#00a76e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Available in Semaglutide, Tirzepatide, BPC-157</li>
+      </ul>
+      <button class="btn-dark">Shop Peptide Pens</button>
+    </div>
+    <div class="pens-visual">
+      <!-- Injection pen SVG — detailed, photorealistic-ish -->
+      <svg width="160" height="420" viewBox="0 0 160 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Shadow -->
+        <ellipse cx="80" cy="415" rx="36" ry="5" fill="rgba(0,0,0,.15)"/>
+
+        <!-- TOP CAP -->
+        <rect x="52" y="8" width="56" height="30" rx="14" fill="#D4B060"/>
+        <rect x="57" y="12" width="46" height="22" rx="10" fill="#C4A040"/>
+        <rect x="58" y="8" width="44" height="6" rx="3" fill="#E8C870" opacity=".5"/>
+        <rect x="48" y="16" width="64" height="4" rx="2" fill="#C09030" opacity=".4"/>
+
+        <!-- TOP BODY -->
+        <rect x="50" y="36" width="60" height="60" rx="8" fill="#2B1D0A"/>
+        <rect x="52" y="36" width="56" height="4" rx="2" fill="#3D2B12"/>
+        <!-- Dial ring -->
+        <rect x="48" y="70" width="64" height="14" rx="4" fill="#3D2B12" stroke="#C4A268" stroke-width=".8"/>
+        <rect x="50" y="73" width="60" height="5" rx="2" fill="#C4A268" opacity=".3"/>
+
+        <!-- CARTRIDGE WINDOW SECTION -->
+        <rect x="50" y="96" width="60" height="110" rx="6" fill="#1E1408" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+        <!-- Window -->
+        <rect x="58" y="104" width="44" height="86" rx="5" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+        <!-- Liquid in window -->
+        <rect x="60" y="130" width="40" height="58" rx="3" fill="rgba(196,162,104,.2)"/>
+        <!-- Liquid meniscus line -->
+        <path d="M60 130 Q80 126 100 130" stroke="rgba(196,162,104,.4)" stroke-width="1" fill="none"/>
+        <!-- Window highlights -->
+        <rect x="60" y="105" width="6" height="84" rx="3" fill="rgba(255,255,255,.06)"/>
+        <!-- Measurement marks -->
+        <line x1="60" y1="145" x2="65" y2="145" stroke="rgba(255,255,255,.2)" stroke-width=".8"/>
+        <line x1="60" y1="160" x2="65" y2="160" stroke="rgba(255,255,255,.2)" stroke-width=".8"/>
+        <line x1="60" y1="175" x2="65" y2="175" stroke="rgba(255,255,255,.2)" stroke-width=".8"/>
+        <line x1="60" y1="190" x2="65" y2="190" stroke="rgba(255,255,255,.18)" stroke-width=".8"/>
+
+        <!-- LOWER BODY -->
+        <rect x="50" y="206" width="60" height="60" rx="6" fill="#2B1D0A"/>
+        <!-- Dose window -->
+        <rect x="60" y="214" width="40" height="30" rx="4" fill="rgba(0,0,0,.5)" stroke="rgba(196,162,104,.25)" stroke-width=".8"/>
+        <text x="80" y="233" font-family="monospace" font-size="11" fill="rgba(255,199,113,.8)" text-anchor="middle" font-weight="bold">2.0</text>
+        <text x="80" y="242" font-family="monospace" font-size="6" fill="rgba(255,255,255,.3)" text-anchor="middle">mg</text>
+
+        <!-- GRIP SECTION -->
+        <rect x="50" y="266" width="60" height="80" rx="12" fill="#3D2B12"/>
+        <!-- Grip ridges -->
+        <rect x="52" y="278" width="56" height="4" rx="2" fill="rgba(0,0,0,.25)"/>
+        <rect x="52" y="286" width="56" height="4" rx="2" fill="rgba(0,0,0,.25)"/>
+        <rect x="52" y="294" width="56" height="4" rx="2" fill="rgba(0,0,0,.25)"/>
+        <rect x="52" y="302" width="56" height="4" rx="2" fill="rgba(0,0,0,.25)"/>
+        <rect x="52" y="310" width="56" height="4" rx="2" fill="rgba(0,0,0,.25)"/>
+        <!-- Grip texture highlight -->
+        <rect x="52" y="266" width="8" height="80" rx="4" fill="rgba(255,255,255,.04)"/>
+
+        <!-- NEEDLE ASSEMBLY -->
+        <rect x="62" y="346" width="36" height="32" rx="10" fill="#C4A268" opacity=".7"/>
+        <rect x="66" y="346" width="28" height="8" rx="4" fill="#D4B278"/>
+        <rect x="70" y="378" width="20" height="24" rx="6" fill="rgba(100,80,40,.4)"/>
+        <rect x="74" y="402" width="12" height="12" rx="4" fill="rgba(80,60,20,.3)"/>
+        <rect x="76" y="414" width="8" height="6" rx="2" fill="rgba(60,40,10,.2)"/>
+
+        <!-- Body highlight / sheen -->
+        <rect x="52" y="40" width="7" height="260" rx="3.5" fill="rgba(255,255,255,.04)"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- NASAL SPRAYS -->
+<section class="nasal">
+  <div class="nasal-inner">
+    <div class="nasal-top">
+      <div>
+        <div style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:10px;">Nasal Delivery</div>
+        <h2 class="nasal-h">Peptide nasal sprays.<br><em>Transmucosal delivery.</em></h2>
+      </div>
+      <a href="#" class="nasal-link">All sprays →</a>
+    </div>
+    <div class="nasal-grid">
+
+      <!-- PT-141 -->
+      <div class="nc nc-amber">
+        <div class="nc-icon">
+          <svg width="52" height="90" viewBox="0 0 52 90" fill="none">
+            <ellipse cx="26" cy="87" rx="14" ry="2.5" fill="rgba(43,29,10,.2)"/>
+            <!-- Bottle body -->
+            <rect x="8" y="25" width="36" height="60" rx="9" fill="rgba(43,29,10,.15)" stroke="rgba(43,29,10,.3)" stroke-width="1"/>
+            <rect x="10" y="50" width="32" height="33" rx="7" fill="rgba(43,29,10,.1)"/>
+            <!-- Pump neck -->
+            <rect x="18" y="16" width="16" height="14" rx="4" fill="rgba(43,29,10,.25)"/>
+            <!-- Actuator head -->
+            <rect x="14" y="8" width="24" height="12" rx="5" fill="rgba(43,29,10,.35)"/>
+            <rect x="22" y="2" width="8" height="8" rx="4" fill="rgba(43,29,10,.25)"/>
+            <!-- Label -->
+            <rect x="12" y="35" width="28" height="22" rx="3" fill="rgba(255,255,255,.25)"/>
+            <text x="26" y="46" font-family="system-ui" font-size="5" font-weight="700" fill="rgba(43,29,10,.7)" text-anchor="middle" letter-spacing=".05em">PT-141</text>
+            <text x="26" y="53" font-family="system-ui" font-size="4" fill="rgba(43,29,10,.45)" text-anchor="middle">10mg/mL</text>
+            <!-- Highlight -->
+            <rect x="10" y="27" width="5" height="50" rx="2.5" fill="rgba(255,255,255,.2)"/>
+          </svg>
+        </div>
+        <div class="nc-name">PT-141</div>
+        <div class="nc-desc">Bremelanotide · Sexual arousal research peptide · Nasal pump spray</div>
+        <div class="nc-price">$65 / 10mg</div>
+        <div class="nc-ruo">For Research Use Only</div>
+      </div>
+
+      <!-- Selank -->
+      <div class="nc nc-tan">
+        <div class="nc-icon">
+          <svg width="52" height="90" viewBox="0 0 52 90" fill="none">
+            <ellipse cx="26" cy="87" rx="14" ry="2.5" fill="rgba(43,29,10,.15)"/>
+            <rect x="8" y="25" width="36" height="60" rx="9" fill="rgba(43,29,10,.12)" stroke="rgba(43,29,10,.22)" stroke-width="1"/>
+            <rect x="10" y="50" width="32" height="33" rx="7" fill="rgba(43,29,10,.08)"/>
+            <rect x="18" y="16" width="16" height="14" rx="4" fill="rgba(43,29,10,.2)"/>
+            <rect x="14" y="8" width="24" height="12" rx="5" fill="rgba(43,29,10,.3)"/>
+            <rect x="22" y="2" width="8" height="8" rx="4" fill="rgba(43,29,10,.2)"/>
+            <rect x="12" y="35" width="28" height="22" rx="3" fill="rgba(255,255,255,.3)"/>
+            <text x="26" y="46" font-family="system-ui" font-size="5.5" font-weight="700" fill="rgba(43,29,10,.7)" text-anchor="middle" letter-spacing=".05em">SELANK</text>
+            <text x="26" y="53" font-family="system-ui" font-size="4" fill="rgba(43,29,10,.45)" text-anchor="middle">5mg · Nasal</text>
+            <rect x="10" y="27" width="5" height="50" rx="2.5" fill="rgba(255,255,255,.2)"/>
+          </svg>
+        </div>
+        <div class="nc-name">Selank</div>
+        <div class="nc-desc">Anxiolytic heptapeptide · Cognitive research &amp; mood modulation</div>
+        <div class="nc-price">$55 / 5mg</div>
+        <div class="nc-ruo">For Research Use Only</div>
+      </div>
+
+      <!-- Semax -->
+      <div class="nc nc-teal">
+        <div class="nc-icon">
+          <svg width="52" height="90" viewBox="0 0 52 90" fill="none">
+            <ellipse cx="26" cy="87" rx="14" ry="2.5" fill="rgba(0,0,0,.3)"/>
+            <rect x="8" y="25" width="36" height="60" rx="9" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
+            <rect x="10" y="50" width="32" height="33" rx="7" fill="rgba(255,255,255,.05)"/>
+            <rect x="18" y="16" width="16" height="14" rx="4" fill="rgba(255,255,255,.15)"/>
+            <rect x="14" y="8" width="24" height="12" rx="5" fill="rgba(255,255,255,.2)"/>
+            <rect x="22" y="2" width="8" height="8" rx="4" fill="rgba(255,255,255,.12)"/>
+            <rect x="12" y="35" width="28" height="22" rx="3" fill="rgba(255,255,255,.08)"/>
+            <text x="26" y="46" font-family="system-ui" font-size="5.5" font-weight="700" fill="rgba(255,255,255,.75)" text-anchor="middle" letter-spacing=".05em">SEMAX</text>
+            <text x="26" y="53" font-family="system-ui" font-size="4" fill="rgba(255,255,255,.4)" text-anchor="middle">5mg · Nasal</text>
+            <rect x="10" y="27" width="5" height="50" rx="2.5" fill="rgba(255,255,255,.07)"/>
+          </svg>
+        </div>
+        <div class="nc-name">Semax</div>
+        <div class="nc-desc">ACTH-derived nootropic peptide · Neuroprotection research</div>
+        <div class="nc-price">$59 / 5mg</div>
+        <div class="nc-ruo">For Research Use Only</div>
+      </div>
+
+      <!-- BPC-157 Nasal -->
+      <div class="nc nc-dark">
+        <div class="nc-icon">
+          <svg width="52" height="90" viewBox="0 0 52 90" fill="none">
+            <ellipse cx="26" cy="87" rx="14" ry="2.5" fill="rgba(0,0,0,.5)"/>
+            <rect x="8" y="25" width="36" height="60" rx="9" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+            <rect x="10" y="50" width="32" height="33" rx="7" fill="rgba(255,255,255,.04)"/>
+            <rect x="18" y="16" width="16" height="14" rx="4" fill="rgba(196,162,104,.3)"/>
+            <rect x="14" y="8" width="24" height="12" rx="5" fill="rgba(196,162,104,.4)"/>
+            <rect x="22" y="2" width="8" height="8" rx="4" fill="rgba(196,162,104,.25)"/>
+            <rect x="12" y="35" width="28" height="22" rx="3" fill="rgba(255,255,255,.05)"/>
+            <text x="26" y="44" font-family="system-ui" font-size="5" font-weight="700" fill="rgba(255,199,113,.75)" text-anchor="middle" letter-spacing=".05em">BPC-157</text>
+            <text x="26" y="51" font-family="system-ui" font-size="4" fill="rgba(255,255,255,.35)" text-anchor="middle">Nasal Spray</text>
+            <text x="26" y="58" font-family="system-ui" font-size="4" fill="rgba(255,255,255,.25)" text-anchor="middle">500mcg/spray</text>
+            <rect x="10" y="27" width="5" height="50" rx="2.5" fill="rgba(255,255,255,.05)"/>
+          </svg>
+        </div>
+        <div class="nc-name">BPC-157 Nasal</div>
+        <div class="nc-desc">500mcg per spray · Gastrointestinal &amp; tissue repair research</div>
+        <div class="nc-price">$49 / 5mg</div>
+        <div class="nc-ruo">For Research Use Only</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO SECTION -->
+<section class="video-sec">
+  <div class="video-hero">
+    <div class="v-bg"></div>
+    <div class="v-grain"></div>
+    <div class="v-content">
+      <div class="v-eye">Research Film Series</div>
+      <h2 class="v-h">Inside the science<br><em>of peptide research.</em></h2>
+      <p class="v-sub">A four-part documentary series exploring the molecular mechanisms, laboratory protocols, and research applications driving modern peptide science.</p>
+      <button class="play" onclick="document.getElementById('vm').classList.add('open')" aria-label="Play">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M7 4l13 7-13 7V4z" fill="white"/></svg>
+      </button>
+      <div class="play-label">Watch Episode 1 · 18 min</div>
+    </div>
+  </div>
+  <div class="v-strip">
+    <div class="vsc vs1">
+      <div class="vsc-bg"></div>
+      <div class="vsc-body">
+        <div class="vsc-play-btn"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M3 2l8 4.5L3 11V2z" fill="white"/></svg></div>
+        <div class="vsc-eye">Episode 1</div>
+        <div class="vsc-title">GLP-1 Receptors &amp;<br>Metabolic Signaling</div>
+        <div class="vsc-dur">18 min</div>
+      </div>
+    </div>
+    <div class="vsc vs2">
+      <div class="vsc-bg"></div>
+      <div class="vsc-body">
+        <div class="vsc-play-btn"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M3 2l8 4.5L3 11V2z" fill="white"/></svg></div>
+        <div class="vsc-eye">Episode 2</div>
+        <div class="vsc-title">Tissue Repair:<br>The BPC-157 Mechanism</div>
+        <div class="vsc-dur">22 min</div>
+      </div>
+    </div>
+    <div class="vsc vs3">
+      <div class="vsc-bg"></div>
+      <div class="vsc-body">
+        <div class="vsc-play-btn"><svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M3 2l8 4.5L3 11V2z" fill="white"/></svg></div>
+        <div class="vsc-eye">Episode 3</div>
+        <div class="vsc-title">Cognitive Peptides:<br>Selank, Semax &amp; Beyond</div>
+        <div class="vsc-dur">26 min</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO MODAL -->
+<div class="vmodal" id="vm" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="vmodal-inner">
+    <button class="vmodal-x" onclick="document.getElementById('vm').classList.remove('open')">✕</button>
+    <div class="vmodal-ph">
+      <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="28" stroke="rgba(255,255,255,.18)" stroke-width="1.5"/><path d="M23 18l22 12-22 12V18z" fill="rgba(255,255,255,.28)"/></svg>
+      <span>GLP-1 Receptors &amp; Metabolic Signaling</span>
+      <span style="font-size:12px;opacity:.4;">Episode 1 · Align Forever Research Film Series</span>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-inner">
+    <div><div class="stat-n">&gt;99%</div><div class="stat-l">Purity · HPLC &amp; mass-spec verified on every batch</div></div>
+    <div><div class="stat-n">500+</div><div class="stat-l">Published research applications per compound</div></div>
+    <div><div class="stat-n">48h</div><div class="stat-l">Cold-chain dispatch from ISO-certified facility</div></div>
+    <div><div class="stat-n">COA</div><div class="stat-l">Certificate of Analysis with every single order</div></div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <div class="how-inner">
+    <div>
+      <div style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:12px;">Research Protocol</div>
+      <h2 class="sec-h" style="font-size:clamp(24px,3.5vw,36px)">How it works.</h2>
+    </div>
+    <div class="how-steps">
+      <div><div class="step-n">01</div><div class="step-h">Verify credentials</div><div class="step-p">Create a researcher account and confirm your institutional affiliation or professional license. Required for RUO compliance.</div></div>
+      <div><div class="step-n">02</div><div class="step-h">Select compounds</div><div class="step-p">Browse the full catalog. Review the Certificate of Analysis and purity data before ordering. Every batch is third-party tested.</div></div>
+      <div><div class="step-n">03</div><div class="step-h">Receive &amp; research</div><div class="step-p">Cold-chain delivery within 48 hours. COA and reconstitution guide included with every shipment.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ORAL TABLETS SCROLL -->
+<section class="prod-section tablets-section" style="background:var(--card-cream);">
+  <div class="prod-inner">
+    <div class="sec-hdr">
+      <h2 class="sec-h">Oral &amp; sublingual<br><em>tablet peptides.</em></h2>
+      <a href="#" class="sec-link">View all →</a>
+    </div>
+    <div class="prod-scroll">
+
+      <div class="pc" style="background:var(--white); border:1.5px solid var(--card-cream);">
+        <span class="pc-tag tag-ruo">Oral</span>
+        <div class="pc-img">
+          <svg width="90" height="90" viewBox="0 0 90 90" fill="none">
+            <!-- Tablet pill shape -->
+            <ellipse cx="45" cy="55" rx="6" ry="3" fill="rgba(0,0,0,.1)"/>
+            <ellipse cx="45" cy="48" rx="32" ry="20" fill="#D4B060" opacity=".9"/>
+            <ellipse cx="45" cy="48" rx="32" ry="20" fill="none" stroke="rgba(0,0,0,.1)" stroke-width="1"/>
+            <!-- Score line -->
+            <line x1="45" y1="30" x2="45" y2="66" stroke="rgba(0,0,0,.12)" stroke-width="1"/>
+            <!-- Highlight -->
+            <ellipse cx="35" cy="40" rx="10" ry="6" fill="rgba(255,255,255,.25)" transform="rotate(-20 35 40)"/>
+            <text x="45" y="52" font-family="system-ui" font-size="7" font-weight="700" fill="rgba(43,29,10,.55)" text-anchor="middle">3mg</text>
+          </svg>
+        </div>
+        <div class="pc-name">Semaglutide Oral</div>
+        <div class="pc-conc">3mg · Sublingual tablet</div>
+        <div class="pc-foot"><span class="pc-price">$72</span><button class="pc-add">+</button></div>
+      </div>
+
+      <div class="pc pc-tan">
+        <span class="pc-tag tag-new">New</span>
+        <div class="pc-img">
+          <svg width="90" height="90" viewBox="0 0 90 90" fill="none">
+            <!-- Capsule -->
+            <ellipse cx="45" cy="58" rx="5" ry="2.5" fill="rgba(43,29,10,.15)"/>
+            <rect x="13" y="36" width="64" height="22" rx="11" fill="rgba(196,162,104,.35)" stroke="rgba(43,29,10,.2)" stroke-width="1"/>
+            <rect x="13" y="36" width="32" height="22" rx="11" fill="rgba(196,162,104,.55)"/>
+            <line x1="45" y1="36" x2="45" y2="58" stroke="rgba(43,29,10,.12)" stroke-width="1"/>
+            <!-- Cap highlight -->
+            <ellipse cx="28" cy="44" rx="9" ry="5" fill="rgba(255,255,255,.2)" transform="rotate(-10 28 44)"/>
+            <text x="45" y="51" font-family="system-ui" font-size="6" font-weight="700" fill="rgba(43,29,10,.55)" text-anchor="middle">500mcg</text>
+          </svg>
+        </div>
+        <div class="pc-name">BPC-157 Capsule</div>
+        <div class="pc-conc">500mcg · Oral capsule</div>
+        <div class="pc-foot"><span class="pc-price">$44</span><button class="pc-add">+</button></div>
+      </div>
+
+      <div class="pc pc-cream">
+        <span class="pc-tag tag-ruo">Research</span>
+        <div class="pc-img">
+          <svg width="90" height="90" viewBox="0 0 90 90" fill="none">
+            <ellipse cx="45" cy="58" rx="5" ry="2.5" fill="rgba(0,0,0,.08)"/>
+            <rect x="15" y="38" width="60" height="20" rx="10" fill="rgba(176,96,64,.25)" stroke="rgba(176,96,64,.35)" stroke-width="1"/>
+            <rect x="15" y="38" width="30" height="20" rx="10" fill="rgba(176,96,64,.38)"/>
+            <line x1="45" y1="38" x2="45" y2="58" stroke="rgba(176,96,64,.15)" stroke-width="1"/>
+            <ellipse cx="28" cy="45" rx="9" ry="5" fill="rgba(255,255,255,.2)" transform="rotate(-10 28 45)"/>
+            <text x="45" y="52" font-family="system-ui" font-size="6" font-weight="700" fill="rgba(0,0,0,.45)" text-anchor="middle">1.5mg</text>
+          </svg>
+        </div>
+        <div class="pc-name">Thymosin Alpha-1</div>
+        <div class="pc-conc">1.5mg · Oral capsule</div>
+        <div class="pc-foot"><span class="pc-price">$68</span><button class="pc-add">+</button></div>
+      </div>
+
+      <div class="pc pc-dark">
+        <span class="pc-tag tag-pop" style="background:rgba(255,255,255,.12);color:#fff;">Research</span>
+        <div class="pc-img">
+          <svg width="90" height="90" viewBox="0 0 90 90" fill="none">
+            <ellipse cx="45" cy="58" rx="5" ry="2.5" fill="rgba(0,0,0,.45)"/>
+            <rect x="13" y="36" width="64" height="22" rx="11" fill="rgba(255,255,255,.07)" stroke="rgba(255,255,255,.14)" stroke-width="1"/>
+            <rect x="13" y="36" width="32" height="22" rx="11" fill="rgba(255,255,255,.12)"/>
+            <line x1="45" y1="36" x2="45" y2="58" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+            <ellipse cx="28" cy="44" rx="9" ry="5" fill="rgba(255,255,255,.08)" transform="rotate(-10 28 44)"/>
+            <text x="45" y="51" font-family="system-ui" font-size="6" font-weight="700" fill="rgba(255,255,255,.6)" text-anchor="middle">5mg</text>
+          </svg>
+        </div>
+        <div class="pc-name">Ipamorelin Oral</div>
+        <div class="pc-conc" style="color:rgba(255,255,255,.4)">5mg · Sublingual</div>
+        <div class="pc-foot light-border"><span class="pc-price">$62</span><button class="pc-add">+</button></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi">
+  <div class="testi-inner">
+    <div class="sec-hdr">
+      <h2 class="sec-h">Trusted by<br><em>researchers.</em></h2>
+      <a href="#" class="sec-link">All reviews →</a>
+    </div>
+    <div class="testi-scroll">
+      <div class="tc">
+        <div class="tc-stars">★★★★★</div>
+        <p class="tc-quote">"Exceptional purity. The HPLC data in the COA matched our in-house verification exactly. Consistent batch-to-batch quality our lab relies on."</p>
+        <div class="tc-author"><div class="tc-av">DM</div><div><div class="tc-name">Dr. D. Marchetti</div><div class="tc-cred">PhD Biochemistry · University Research Lab</div></div></div>
+        <div class="tc-note">Research use only. Not a clinical outcome.</div>
+      </div>
+      <div class="tc">
+        <div class="tc-stars">★★★★★</div>
+        <p class="tc-quote">"Best GLP-1 research vials I've sourced. Reconstitutes cleanly, no particulates. The cold-chain packaging was also excellent."</p>
+        <div class="tc-author"><div class="tc-av">RS</div><div><div class="tc-name">R. Sandoval, MS</div><div class="tc-cred">Metabolic Research Institute</div></div></div>
+        <div class="tc-note">Research use only. Not a clinical outcome.</div>
+      </div>
+      <div class="tc">
+        <div class="tc-stars">★★★★★</div>
+        <p class="tc-quote">"The peptide pen system is the cleanest I've tested. Accurate dosing and cartridge integrity after 6 weeks of refrigeration was perfect."</p>
+        <div class="tc-author"><div class="tc-av">KL</div><div><div class="tc-name">K. Larsson, PhD</div><div class="tc-cred">Sports Science &amp; Recovery Research</div></div></div>
+        <div class="tc-note">Research use only. Not a clinical outcome.</div>
+      </div>
+      <div class="tc">
+        <div class="tc-stars">★★★★★</div>
+        <p class="tc-quote">"Selank nasal spray — best cognitive peptide I've worked with. Consistent concentration, no preservative off-gassing, even spray pattern."</p>
+        <div class="tc-author"><div class="tc-av">AC</div><div><div class="tc-name">A. Chen, PhD</div><div class="tc-cred">Neuropharmacology Department</div></div></div>
+        <div class="tc-note">Research use only. Not a clinical outcome.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COA / QUALITY -->
+<section class="coa-section">
+  <div class="coa-inner">
+    <div>
+      <div class="coa-label">Purity &amp; Compliance</div>
+      <h2 class="coa-h">Third-party tested.<br><em>Every batch.</em></h2>
+      <p class="coa-body">Every compound undergoes independent HPLC mass-spectrometry verification before it ships. Certificate of Analysis available for download on every product page. Produced in ISO 9001-certified facilities.</p>
+      <div class="coa-badges">
+        <div class="cbadge"><div class="cdot"></div> ISO 9001 Certified</div>
+        <div class="cbadge"><div class="cdot"></div> HPLC Verified &gt;99%</div>
+        <div class="cbadge"><div class="cdot"></div> Independent Lab Tested</div>
+        <div class="cbadge"><div class="cdot"></div> RUO Compliant</div>
+        <div class="cbadge"><div class="cdot"></div> Cold-chain Certified</div>
+      </div>
+      <button class="btn-amber">Our Testing Standards</button>
+    </div>
+    <div>
+      <div class="coa-card">
+        <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--amber)">Certificate of Analysis</div>
+        <div class="coa-card-h">Download COA for any batch.</div>
+        <div class="coa-card-body">Enter your order number or batch code to access the full analytical report including HPLC chromatography, mass-spec confirmation, purity data, and endotoxin results.</div>
+        <div class="coa-mono">
+          Product: Semaglutide 5mg<br>
+          Batch: <span class="hl">AF-2026-09-SEM-042</span><br>
+          Purity (HPLC): <span class="hl">99.4%</span><br>
+          MW Confirmed: 4113.58 Da <span class="ok">✓</span><br>
+          Endotoxin: &lt;1 EU/mg <span class="ok">✓</span><br>
+          Status: <span class="ok">Released</span>
+        </div>
+        <button class="coa-btn">Download COA →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <div class="nl-inner">
+    <h2 class="nl-h">Stay ahead of<br><em>the research.</em></h2>
+    <p class="nl-sub">New batch alerts, research briefs, protocol guides, and regulatory updates — for licensed researchers and professionals.</p>
+    <form class="nl-form" onsubmit="return false;">
+      <input class="nl-input" type="email" placeholder="your@institution.edu">
+      <button class="btn-dark" type="submit">Subscribe</button>
+    </form>
+    <p style="font-size:11px;color:rgba(43,29,10,.45);margin-top:14px;">For Research Use Only communications. Qualified researchers only.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">Align Forever</div>
+        <p>Research-grade peptide compounds for licensed researchers and qualified professionals. ISO-certified. Third-party tested.</p>
+        <div class="footer-ruo">
+          <strong style="color:rgba(255,255,255,.55);">Research Use Only.</strong> All products are strictly for in vitro research and laboratory use. Not for human or veterinary use. Not for diagnostic or therapeutic purposes. Must be handled by qualified professionals only. Not for resale.
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <ul>
+          <li><a href="#">Peptide Vials</a></li>
+          <li><a href="#">Peptide Pens</a></li>
+          <li><a href="#">Nasal Sprays</a></li>
+          <li><a href="#">Oral Tablets</a></li>
+          <li><a href="#">Bundles</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Research</h4>
+        <ul>
+          <li><a href="#">Protocol Library</a></li>
+          <li><a href="#">Research Briefs</a></li>
+          <li><a href="#">COA Lookup</a></li>
+          <li><a href="#">Film Series</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Quality Standards</a></li>
+          <li><a href="#">Shipping Policy</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <a href="#">Terms &amp; Conditions</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">RUO Policy</a>
+      <a href="#">Shipping &amp; Returns</a>
+      <a href="#">Cookie Preferences</a>
+      <span style="width:100%;margin-top:4px;">© 2026 Align Forever Research Inc. All rights reserved. For Research Use Only. Not for human use.</span>
+    </div>
+  </div>
+  <div class="footer-wm">Align</div>
+</footer>
+
+</body>
+</html>
