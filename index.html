@@ -1,1766 +1,1514 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hims – Telehealth for Hair Loss, ED, Mental Health & More</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Hims</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap">
 
-    :root {
-      --green-dark: #1a3b2e;
-      --green-mid:  #2c5f47;
-      --green-light: #4c8c6b;
-      --cream:      #f5f0e8;
-      --cream-dark: #ede8df;
-      --white:      #ffffff;
-      --text-dark:  #1a1a1a;
-      --text-mid:   #4d4d4d;
-      --text-light: #767676;
-      --border:     #e0dbd3;
-      --yellow:     #f4c542;
-      --orange:     #e8682a;
-    }
+<style>
+:root {
+  --amber: #FFC671;
+  --amber-dark: #F0A940;
+  --white: #ffffff;
+  --near-black: #1a1a1a;
+  --text: #111111;
+  --green-link: #00a76e;
+  --dark-espresso: #2B1D0A;
+  --card-dark: #2B2829;
+  --card-tan: #C4A268;
+  --card-cream: #F5F0E8;
+  --teal-dark: #2E4050;
+  --teal-mid: #3D5560;
+  --lavender: #CEDBE5;
+  --yellow-pale: #FDEAA0;
+  --terracotta: #B06040;
+  --footer-dark: #0E0B07;
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+}
 
-    html { scroll-behavior: smooth; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      color: var(--text-dark);
-      background: var(--white);
-      line-height: 1.5;
-    }
+html { font-size: 16px; }
 
-    a { text-decoration: none; color: inherit; }
-    button { cursor: pointer; border: none; outline: none; }
-    img { display: block; max-width: 100%; }
-    ul { list-style: none; }
+body {
+  font-family: var(--sans);
+  color: var(--text);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
 
-    /* ─── ANNOUNCEMENT BAR ─────────────────────────────────── */
-    .announce-bar {
-      background: var(--green-dark);
-      color: var(--white);
-      text-align: center;
-      padding: 10px 20px;
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 0.02em;
-    }
-    .announce-bar a { text-decoration: underline; color: var(--white); }
+img { max-width: 100%; display: block; }
 
-    /* ─── NAVIGATION ───────────────────────────────────────── */
-    .nav-wrapper {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-    }
-    nav {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 24px;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-    .nav-logo {
-      font-size: 28px;
-      font-weight: 900;
-      color: var(--green-dark);
-      letter-spacing: -0.5px;
-      flex-shrink: 0;
-    }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      flex: 1;
-      justify-content: center;
-    }
-    .nav-links > li { position: relative; }
-    .nav-links > li > a {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      padding: 8px 12px;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text-dark);
-      border-radius: 6px;
-      transition: background 0.15s;
-    }
-    .nav-links > li > a:hover { background: var(--cream); }
-    .nav-links > li > a .chevron {
-      width: 14px;
-      height: 14px;
-      transition: transform 0.2s;
-    }
-    .nav-links > li:hover > a .chevron { transform: rotate(180deg); }
+a { text-decoration: none; color: inherit; }
 
-    /* dropdown */
-    .dropdown {
-      display: none;
-      position: absolute;
-      top: calc(100% + 8px);
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 16px;
-      min-width: 220px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-    }
-    .nav-links > li:hover .dropdown { display: block; }
-    .dropdown a {
-      display: block;
-      padding: 10px 12px;
-      font-size: 14px;
-      color: var(--text-mid);
-      border-radius: 6px;
-      transition: background 0.15s, color 0.15s;
-    }
-    .dropdown a:hover { background: var(--cream); color: var(--text-dark); }
+/* ── ANNOUNCEMENT BAR ── */
+.announce {
+  background: var(--amber);
+  text-align: center;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .01em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.announce a {
+  text-decoration: underline;
+  font-weight: 600;
+  cursor: pointer;
+}
 
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-shrink: 0;
-    }
-    .nav-actions .btn-login {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text-dark);
-      padding: 8px 16px;
-      border-radius: 50px;
-      border: 1.5px solid var(--border);
-      background: transparent;
-      transition: border-color 0.15s;
-    }
-    .nav-actions .btn-login:hover { border-color: var(--text-dark); }
-    .nav-actions .btn-start {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--white);
-      padding: 10px 22px;
-      border-radius: 50px;
-      background: var(--green-dark);
-      transition: background 0.15s;
-    }
-    .nav-actions .btn-start:hover { background: var(--green-mid); }
+/* ── NAV ── */
+nav {
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(0,0,0,.06);
+}
+.logo {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 22px;
+  letter-spacing: -.5px;
+  color: var(--text);
+}
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.nav-login {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+}
+.nav-hamburger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 4px;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+}
 
-    .hamburger { display: none; flex-direction: column; gap: 5px; padding: 8px; background: none; }
-    .hamburger span { display: block; width: 22px; height: 2px; background: var(--text-dark); border-radius: 2px; }
+/* ── HERO ── */
+.hero {
+  background: var(--white);
+  padding: 40px 24px 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.hero-headline {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(32px, 5vw, 52px);
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: 24px;
+  max-width: 600px;
+}
 
-    /* ─── HERO ─────────────────────────────────────────────── */
-    .hero {
-      background: var(--cream);
-      min-height: 560px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      max-width: 100%;
-      overflow: hidden;
-    }
-    .hero-content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 80px 80px 80px 120px;
-      max-width: 640px;
-    }
-    .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--green-dark);
-      color: var(--white);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 6px 14px;
-      border-radius: 50px;
-      margin-bottom: 24px;
-      width: fit-content;
-    }
-    .hero-content h1 {
-      font-size: clamp(38px, 4vw, 56px);
-      font-weight: 900;
-      line-height: 1.08;
-      letter-spacing: -0.03em;
-      color: var(--text-dark);
-      margin-bottom: 20px;
-    }
-    .hero-content h1 em {
-      font-style: italic;
-      color: var(--green-mid);
-    }
-    .hero-content p {
-      font-size: 17px;
-      color: var(--text-mid);
-      margin-bottom: 36px;
-      max-width: 420px;
-      line-height: 1.65;
-    }
-    .hero-ctas {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--green-dark);
-      color: var(--white);
-      font-size: 15px;
-      font-weight: 700;
-      padding: 16px 32px;
-      border-radius: 50px;
-      transition: background 0.15s, transform 0.1s;
-    }
-    .btn-primary:hover { background: var(--green-mid); transform: translateY(-1px); }
-    .btn-outline {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: transparent;
-      color: var(--text-dark);
-      font-size: 15px;
-      font-weight: 600;
-      padding: 14px 28px;
-      border-radius: 50px;
-      border: 2px solid var(--text-dark);
-      transition: background 0.15s;
-    }
-    .btn-outline:hover { background: rgba(0,0,0,0.04); }
+/* Category grid */
+.category-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 220px 100px 100px;
+  gap: 8px;
+  padding-bottom: 0;
+}
 
-    .hero-trust {
-      margin-top: 32px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      font-size: 13px;
-      color: var(--text-mid);
-    }
-    .hero-trust .stars { display: flex; gap: 2px; }
-    .hero-trust .stars span { color: var(--yellow); font-size: 16px; }
-    .hero-trust strong { color: var(--text-dark); font-weight: 700; }
+/* Big cards */
+.cat-card {
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  transition: opacity .15s;
+}
+.cat-card:hover { opacity: .92; }
 
-    .hero-image-wrap {
-      position: relative;
-      overflow: hidden;
-      background: var(--green-dark);
-    }
-    .hero-image-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-    }
-    .hero-image-placeholder {
-      width: 100%;
-      height: 100%;
-      min-height: 560px;
-      background: linear-gradient(135deg, #1a3b2e 0%, #2c5f47 50%, #4c8c6b 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .hero-image-placeholder .person-silhouette {
-      width: 200px;
-      height: 380px;
-      opacity: 0.18;
-    }
+.cat-dark {
+  background: var(--card-dark);
+  color: var(--white);
+}
+.cat-tan {
+  background: var(--card-tan);
+  color: var(--white);
+}
+.cat-cream {
+  background: var(--card-cream);
+  color: var(--text);
+  border: 1px solid rgba(0,0,0,.06);
+}
 
-    /* ─── CATEGORY STRIP ──────────────────────────────────── */
-    .categories {
-      background: var(--white);
-      padding: 72px 24px;
-    }
-    .categories .section-header {
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto 48px;
-    }
-    .section-label {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--green-mid);
-      margin-bottom: 12px;
-    }
-    .section-title {
-      font-size: clamp(28px, 3.5vw, 42px);
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      line-height: 1.12;
-      color: var(--text-dark);
-      margin-bottom: 16px;
-    }
-    .section-subtitle {
-      font-size: 16px;
-      color: var(--text-mid);
-      line-height: 1.6;
-    }
-    .categories-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 16px;
-      max-width: 1280px;
-      margin: 0 auto;
-    }
-    .cat-card {
-      background: var(--cream);
-      border-radius: 16px;
-      overflow: hidden;
-      text-align: center;
-      padding: 24px 16px 20px;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-      border: 1.5px solid transparent;
-    }
-    .cat-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.1);
-      border-color: var(--green-light);
-    }
-    .cat-card .cat-img {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      margin: 0 auto 14px;
-      object-fit: cover;
-    }
-    .cat-card .cat-icon {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      margin: 0 auto 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 30px;
-    }
-    .cat-card h3 {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--text-dark);
-      margin-bottom: 4px;
-    }
-    .cat-card p {
-      font-size: 11px;
-      color: var(--text-light);
-      line-height: 1.4;
-    }
-    .cat-card .cat-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      margin-top: 10px;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--green-dark);
-    }
+.cat-card-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  opacity: .75;
+}
+.cat-card-title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 1.25;
+  margin-top: 4px;
+}
+.cat-card-cta {
+  font-size: 13px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: auto;
+}
+.cat-card-cta .arrow { font-size: 16px; }
 
-    /* ─── SOCIAL PROOF BANNER ─────────────────────────────── */
-    .proof-banner {
-      background: var(--green-dark);
-      color: var(--white);
-      padding: 48px 24px;
-    }
-    .proof-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 32px;
-      text-align: center;
-    }
-    .proof-item .proof-num {
-      font-size: clamp(36px, 4vw, 52px);
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-    .proof-item .proof-label {
-      font-size: 14px;
-      color: rgba(255,255,255,0.7);
-      line-height: 1.4;
-    }
+/* Small cards */
+.cat-small {
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  cursor: pointer;
+  background: var(--card-cream);
+  border: 1px solid rgba(0,0,0,.06);
+  transition: opacity .15s;
+}
+.cat-small:hover { opacity: .85; }
+.cat-small-text {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text);
+}
+.cat-small-text span {
+  color: var(--green-link);
+  text-decoration: underline;
+  text-decoration-color: var(--green-link);
+}
+.cat-small-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+.cat-small-arrow {
+  color: var(--text);
+  font-size: 18px;
+  font-weight: 300;
+  margin-left: 12px;
+}
 
-    /* ─── FEATURED PRODUCTS ──────────────────────────────── */
-    .products {
-      background: var(--cream);
-      padding: 80px 24px;
-    }
-    .products .section-header { text-align: center; max-width: 600px; margin: 0 auto 48px; }
-    .products-grid {
-      max-width: 1280px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-    }
-    .product-card {
-      background: var(--white);
-      border-radius: 20px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .product-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.12);
-    }
-    .product-img {
-      height: 260px;
-      background: var(--cream-dark);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 64px;
-      position: relative;
-      overflow: hidden;
-    }
-    .product-img .badge {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      background: var(--green-dark);
-      color: var(--white);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      border-radius: 50px;
-    }
-    .product-info {
-      padding: 20px 20px 24px;
-    }
-    .product-info .product-category {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--green-mid);
-      margin-bottom: 6px;
-    }
-    .product-info h3 {
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--text-dark);
-      margin-bottom: 6px;
-      line-height: 1.3;
-    }
-    .product-info .product-desc {
-      font-size: 13px;
-      color: var(--text-mid);
-      line-height: 1.5;
-      margin-bottom: 16px;
-    }
-    .product-info .product-price {
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
-      margin-bottom: 14px;
-    }
-    .product-info .price-current {
-      font-size: 20px;
-      font-weight: 800;
-      color: var(--text-dark);
-    }
-    .product-info .price-original {
-      font-size: 14px;
-      color: var(--text-light);
-      text-decoration: line-through;
-    }
-    .product-info .price-note {
-      font-size: 12px;
-      color: var(--text-light);
-    }
-    .product-stars {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 14px;
-    }
-    .product-stars .stars { display: flex; gap: 1px; }
-    .product-stars .stars span { color: var(--yellow); font-size: 13px; }
-    .product-stars .review-count { font-size: 12px; color: var(--text-light); }
-    .btn-card {
-      display: block;
-      width: 100%;
-      background: var(--green-dark);
-      color: var(--white);
-      font-size: 14px;
-      font-weight: 700;
-      padding: 13px;
-      border-radius: 50px;
-      text-align: center;
-      transition: background 0.15s;
-    }
-    .btn-card:hover { background: var(--green-mid); }
+/* Product image placeholders inside big cards */
+.card-img-pill {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    /* ─── HOW IT WORKS ───────────────────────────────────── */
-    .how-it-works {
-      background: var(--white);
-      padding: 80px 24px;
-    }
-    .how-it-works .section-header { text-align: center; max-width: 600px; margin: 0 auto 56px; }
-    .steps-grid {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-      position: relative;
-    }
-    .steps-grid::before {
-      content: '';
-      position: absolute;
-      top: 48px;
-      left: calc(100% / 6);
-      width: calc(100% * 2/3);
-      height: 2px;
-      background: repeating-linear-gradient(90deg, var(--green-light) 0, var(--green-light) 8px, transparent 8px, transparent 16px);
-    }
-    .step {
-      text-align: center;
-      padding: 0 32px;
-      position: relative;
-    }
-    .step-num {
-      width: 96px;
-      height: 96px;
-      border-radius: 50%;
-      background: var(--cream);
-      border: 3px solid var(--green-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 36px;
-      margin: 0 auto 24px;
-      position: relative;
-      z-index: 1;
-    }
-    .step .step-count {
-      position: absolute;
-      top: -6px;
-      right: -6px;
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      background: var(--green-dark);
-      color: var(--white);
-      font-size: 11px;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .step h3 {
-      font-size: 20px;
-      font-weight: 800;
-      color: var(--text-dark);
-      margin-bottom: 12px;
-      letter-spacing: -0.02em;
-    }
-    .step p {
-      font-size: 15px;
-      color: var(--text-mid);
-      line-height: 1.65;
-    }
+/* ── WEIGHT LOSS HERO ── */
+.wl-hero {
+  background: var(--dark-espresso);
+  color: var(--white);
+  padding: 80px 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  margin-top: 8px;
+}
+.wl-hero-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(180,120,40,.35) 0%, transparent 70%);
+  pointer-events: none;
+}
+.wl-hero-inner { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
+.wl-hero-heading {
+  font-family: var(--serif);
+  font-size: clamp(30px, 5vw, 48px);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+.wl-hero-heading em {
+  font-style: italic;
+  color: var(--amber);
+  font-weight: 400;
+}
+.wl-hero-product-img {
+  width: 100%;
+  max-width: 420px;
+  margin: 32px auto;
+  border-radius: 16px;
+  overflow: hidden;
+  min-height: 280px;
+  background: linear-gradient(135deg, rgba(180,100,20,.3) 0%, rgba(60,40,20,.5) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wl-hero-product-img img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.wl-hero-body {
+  font-size: 18px;
+  line-height: 1.55;
+  color: rgba(255,255,255,.9);
+  margin-bottom: 28px;
+}
+.wl-hero-body strong { font-weight: 600; color: var(--white); }
+.btn-amber {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--amber);
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 14px 36px;
+  border-radius: 100px;
+  cursor: pointer;
+  border: none;
+  transition: background .15s;
+}
+.btn-amber:hover { background: var(--amber-dark); }
 
-    /* ─── BEFORE / AFTER + TESTIMONIALS ─────────────────── */
-    .testimonials {
-      background: var(--cream);
-      padding: 80px 24px;
-    }
-    .testimonials .section-header { text-align: center; max-width: 600px; margin: 0 auto 48px; }
-    .testimonials-track {
-      display: flex;
-      gap: 24px;
-      max-width: 1280px;
-      margin: 0 auto;
-      overflow-x: auto;
-      padding-bottom: 8px;
-      scrollbar-width: none;
-    }
-    .testimonials-track::-webkit-scrollbar { display: none; }
-    .testimonial-card {
-      background: var(--white);
-      border-radius: 20px;
-      padding: 32px;
-      min-width: 340px;
-      max-width: 340px;
-      flex-shrink: 0;
-    }
-    .testimonial-card .t-stars { display: flex; gap: 2px; margin-bottom: 16px; }
-    .testimonial-card .t-stars span { color: var(--yellow); font-size: 18px; }
-    .testimonial-card .t-quote {
-      font-size: 16px;
-      color: var(--text-dark);
-      line-height: 1.65;
-      margin-bottom: 20px;
-      font-style: italic;
-    }
-    .testimonial-card .t-author {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .t-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--cream-dark);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      flex-shrink: 0;
-    }
-    .t-author-info .t-name {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text-dark);
-    }
-    .t-author-info .t-detail {
-      font-size: 12px;
-      color: var(--text-light);
-    }
-    .t-tag {
-      display: inline-block;
-      background: var(--cream);
-      color: var(--green-dark);
-      font-size: 11px;
-      font-weight: 600;
-      padding: 3px 10px;
-      border-radius: 50px;
-      margin-top: 16px;
-    }
+/* ── GLP-1 LINEUP ── */
+.glp1 {
+  padding: 64px 24px;
+  background: var(--white);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.section-heading {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(22px, 4vw, 32px);
+  margin-bottom: 28px;
+  color: var(--text);
+}
+.product-scroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: none;
+}
+.product-scroll::-webkit-scrollbar { display: none; }
+.product-card {
+  flex: 0 0 220px;
+  background: var(--card-tan);
+  border-radius: 16px;
+  padding: 24px 20px 20px;
+  position: relative;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+}
+.product-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: var(--white);
+  color: var(--text);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 100px;
+}
+.product-badge.new {
+  background: var(--green-link);
+  color: var(--white);
+}
+.product-badge.fda {
+  border: 1px solid rgba(0,0,0,.15);
+}
+.product-card-img {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 140px;
+}
+.product-card-img .pill-visual {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+}
+.product-name {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.product-form {
+  font-size: 12px;
+  color: rgba(255,255,255,.8);
+  margin-bottom: 8px;
+}
+.product-price {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 2px;
+}
+.product-ingredient {
+  font-size: 12px;
+  color: rgba(255,255,255,.7);
+}
+.glp1-disclaimer {
+  font-size: 11px;
+  color: #888;
+  margin-top: 16px;
+  line-height: 1.5;
+}
 
-    .testimonials-nav {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 32px;
-    }
-    .testimonials-nav button {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      border: 2px solid var(--border);
-      background: var(--white);
-      font-size: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-dark);
-      cursor: pointer;
-      transition: border-color 0.15s, background 0.15s;
-    }
-    .testimonials-nav button:hover { border-color: var(--green-dark); background: var(--cream); }
+/* ── SPLIT SECTION ── */
+.split-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding: 0 24px 8px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.split-card {
+  border-radius: 16px;
+  padding: 40px 36px;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  position: relative;
+}
+.split-dark {
+  background: var(--card-dark);
+  color: var(--white);
+}
+.split-tan {
+  background: var(--card-tan);
+  color: var(--white);
+}
+.split-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  opacity: .6;
+}
+.split-title {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(22px, 3vw, 30px);
+  line-height: 1.15;
+  margin-top: 8px;
+}
+.split-title em { font-style: italic; color: var(--amber); }
+.split-body { font-size: 14px; line-height: 1.6; opacity: .85; }
+.split-link {
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 16px;
+  display: inline-block;
+}
 
-    /* ─── WHY HIMS ─────────────────────────────────────── */
-    .why-hims {
-      background: var(--white);
-      padding: 80px 24px;
-    }
-    .why-hims .section-header { text-align: center; max-width: 600px; margin: 0 auto 56px; }
-    .why-grid {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 40px;
-    }
-    .why-item {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 16px;
-    }
-    .why-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 14px;
-      background: var(--cream);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 26px;
-    }
-    .why-item h3 {
-      font-size: 19px;
-      font-weight: 800;
-      color: var(--text-dark);
-      letter-spacing: -0.02em;
-    }
-    .why-item p {
-      font-size: 15px;
-      color: var(--text-mid);
-      line-height: 1.65;
-    }
+/* ── SEX SECTION ── */
+.sex-section {
+  background: var(--teal-dark);
+  color: var(--white);
+  padding: 60px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.sex-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(46,64,80,.95) 50%, rgba(30,50,65,.7) 100%);
+}
+.sex-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.sex-meta {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  opacity: .6;
+  margin-bottom: 8px;
+}
+.sex-heading {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(32px, 5vw, 52px);
+  line-height: 1.05;
+  margin-bottom: 4px;
+}
+.sex-link {
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: underline;
+  opacity: .75;
+  cursor: pointer;
+}
 
-    /* ─── PRESS ──────────────────────────────────────── */
-    .press {
-      background: var(--cream);
-      padding: 56px 24px;
-      text-align: center;
-    }
-    .press p {
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text-light);
-      margin-bottom: 32px;
-    }
-    .press-logos {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 48px;
-      flex-wrap: wrap;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    .press-logo {
-      font-size: 20px;
-      font-weight: 800;
-      color: var(--text-light);
-      letter-spacing: -0.03em;
-      opacity: 0.55;
-      transition: opacity 0.15s;
-      user-select: none;
-    }
-    .press-logo:hover { opacity: 0.85; }
-    .press-logo.serif { font-family: Georgia, serif; font-style: italic; }
-    .press-logo.small { font-size: 15px; letter-spacing: 0.08em; text-transform: uppercase; }
+.sex-products-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  opacity: .6;
+  margin-top: 36px;
+  margin-bottom: 12px;
+}
+.sex-products {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+}
+.sex-products::-webkit-scrollbar { display: none; }
+.sex-product-chip {
+  flex: 0 0 auto;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 12px;
+  padding: 14px 16px;
+  min-width: 160px;
+}
+.sex-product-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  opacity: .5;
+  margin-bottom: 8px;
+}
+.sex-product-img-placeholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.2);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+.sex-product-name { font-size: 13px; font-weight: 500; }
+.sex-product-price { font-size: 12px; opacity: .65; }
 
-    /* ─── FAQ ─────────────────────────────────────── */
-    .faq {
-      background: var(--white);
-      padding: 80px 24px;
-    }
-    .faq .section-header { text-align: center; max-width: 600px; margin: 0 auto 48px; }
-    .faq-list {
-      max-width: 760px;
-      margin: 0 auto;
-    }
-    .faq-item {
-      border-bottom: 1.5px solid var(--border);
-    }
-    .faq-item:first-child { border-top: 1.5px solid var(--border); }
-    .faq-question {
-      width: 100%;
-      background: none;
-      border: none;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 24px 4px;
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--text-dark);
-      cursor: pointer;
-      text-align: left;
-      gap: 16px;
-      transition: color 0.15s;
-    }
-    .faq-question:hover { color: var(--green-mid); }
-    .faq-question .faq-icon {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      border: 2px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 18px;
-      line-height: 1;
-      transition: transform 0.2s, border-color 0.2s;
-    }
-    .faq-item.open .faq-question .faq-icon {
-      transform: rotate(45deg);
-      border-color: var(--green-dark);
-      color: var(--green-dark);
-    }
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-    }
-    .faq-item.open .faq-answer { max-height: 400px; }
-    .faq-answer-inner {
-      padding: 0 4px 24px;
-      font-size: 15px;
-      color: var(--text-mid);
-      line-height: 1.7;
-    }
+/* Sex quiz + testimonial row */
+.sex-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 28px;
+}
+.sex-quiz {
+  background: rgba(255,255,255,.08);
+  border-radius: 16px;
+  padding: 28px 24px;
+}
+.sex-quiz-q {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-style: italic;
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+.quiz-options { display: flex; flex-direction: column; gap: 8px; }
+.quiz-opt {
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 100px;
+  padding: 10px 18px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background .15s;
+}
+.quiz-opt:hover { background: rgba(255,255,255,.18); }
 
-    /* ─── CTA BANNER ──────────────────────────────── */
-    .cta-banner {
-      background: var(--green-dark);
-      padding: 80px 24px;
-      text-align: center;
-    }
-    .cta-banner h2 {
-      font-size: clamp(32px, 4vw, 52px);
-      font-weight: 900;
-      color: var(--white);
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      margin-bottom: 16px;
-    }
-    .cta-banner p {
-      font-size: 17px;
-      color: rgba(255,255,255,0.72);
-      margin-bottom: 36px;
-      max-width: 480px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .btn-cta-white {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--white);
-      color: var(--green-dark);
-      font-size: 16px;
-      font-weight: 700;
-      padding: 17px 40px;
-      border-radius: 50px;
-      transition: background 0.15s, transform 0.1s;
-    }
-    .btn-cta-white:hover { background: var(--cream); transform: translateY(-1px); }
-    .cta-note {
-      margin-top: 18px;
-      font-size: 13px;
-      color: rgba(255,255,255,0.5);
-    }
+.sex-testimonial {
+  background: rgba(255,255,255,.06);
+  border-radius: 16px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.testimonial-nav {
+  font-size: 11px;
+  font-weight: 500;
+  opacity: .5;
+  margin-bottom: 12px;
+}
+.testimonial-quote {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-style: italic;
+  line-height: 1.55;
+  flex: 1;
+}
+.testimonial-author {
+  margin-top: 16px;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: .7;
+}
+.testimonial-product {
+  font-size: 12px;
+  color: var(--green-link);
+  font-weight: 600;
+  margin-top: 4px;
+}
 
-    /* ─── FOOTER ──────────────────────────────────── */
-    footer {
-      background: var(--text-dark);
-      color: rgba(255,255,255,0.75);
-      padding: 64px 24px 32px;
-    }
-    .footer-top {
-      max-width: 1280px;
-      margin: 0 auto 48px;
-      display: grid;
-      grid-template-columns: 1.6fr 1fr 1fr 1fr 1fr;
-      gap: 48px;
-    }
-    .footer-brand .footer-logo {
-      font-size: 26px;
-      font-weight: 900;
-      color: var(--white);
-      margin-bottom: 16px;
-    }
-    .footer-brand p {
-      font-size: 14px;
-      line-height: 1.65;
-      max-width: 280px;
-      margin-bottom: 24px;
-    }
-    .footer-social {
-      display: flex;
-      gap: 12px;
-    }
-    .footer-social a {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      border: 1.5px solid rgba(255,255,255,0.25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      color: rgba(255,255,255,0.7);
-      transition: border-color 0.15s, color 0.15s;
-    }
-    .footer-social a:hover { border-color: var(--white); color: var(--white); }
-    .footer-col h4 {
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--white);
-      margin-bottom: 20px;
-    }
-    .footer-col ul { display: flex; flex-direction: column; gap: 10px; }
-    .footer-col ul li a {
-      font-size: 14px;
-      color: rgba(255,255,255,0.65);
-      transition: color 0.15s;
-    }
-    .footer-col ul li a:hover { color: var(--white); }
+/* ── TESTOSTERONE SECTION ── */
+.t-section {
+  background: linear-gradient(160deg, var(--lavender) 0%, var(--yellow-pale) 100%);
+  padding: 64px 24px;
+}
+.t-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+.t-heading {
+  font-family: var(--serif);
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.t-sub { font-size: 14px; color: #555; margin-bottom: 24px; }
+.t-cards { display: flex; flex-direction: column; gap: 10px; }
+.t-card {
+  background: rgba(255,255,255,.65);
+  border-radius: 14px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+}
+.t-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.t-card-name { font-size: 15px; font-weight: 600; color: var(--text); }
+.t-card-sub { font-size: 12px; color: #666; }
+.t-card-cta {
+  margin-left: auto;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--green-link);
+  white-space: nowrap;
+}
+/* Phone mockup */
+.phone-mockup {
+  background: linear-gradient(160deg, #CEDBE5, #9ABDB1);
+  border-radius: 36px;
+  height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,.15);
+  position: relative;
+  overflow: hidden;
+}
+.phone-mockup-inner {
+  width: 200px;
+  height: 340px;
+  background: var(--dark-espresso);
+  border-radius: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 32px rgba(0,0,0,.3);
+  overflow: hidden;
+}
+.phone-screen-content {
+  color: var(--white);
+  text-align: center;
+  padding: 24px 16px;
+}
+.phone-app-name {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+.phone-metric {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--amber);
+  line-height: 1;
+}
+.phone-metric-label {
+  font-size: 11px;
+  opacity: .7;
+  margin-top: 4px;
+}
 
-    .footer-bottom {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding-top: 32px;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .footer-bottom-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    .footer-legal {
-      font-size: 11px;
-      color: rgba(255,255,255,0.35);
-      line-height: 1.7;
-      max-width: 860px;
-    }
-    .footer-links-row {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-    .footer-links-row a {
-      font-size: 12px;
-      color: rgba(255,255,255,0.5);
-      transition: color 0.15s;
-    }
-    .footer-links-row a:hover { color: var(--white); }
-    .footer-copy {
-      font-size: 12px;
-      color: rgba(255,255,255,0.35);
-    }
+/* ── LABS SECTION ── */
+.labs-section {
+  background: var(--terracotta);
+  color: var(--white);
+  padding: 0 24px 24px;
+}
+.labs-top {
+  padding-top: 60px;
+  text-align: center;
+  margin-bottom: 32px;
+}
+.labs-heading {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(26px, 4vw, 40px);
+  line-height: 1.1;
+}
+.labs-heading em { font-style: italic; color: var(--amber); }
+.labs-sub { font-size: 15px; margin-top: 8px; opacity: .85; }
+.labs-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--white);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 100px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+.labs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.labs-card {
+  background: rgba(0,0,0,.2);
+  border-radius: 16px;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  cursor: pointer;
+}
+.labs-card-label { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; opacity: .6; }
+.labs-card-title { font-family: var(--serif); font-size: 22px; font-weight: 700; }
+.labs-card-body { font-size: 14px; opacity: .8; line-height: 1.5; }
+.labs-card-cta { font-size: 13px; font-weight: 600; color: var(--amber); margin-top: 8px; cursor: pointer; }
+.labs-stat {
+  font-family: var(--serif);
+  font-size: 36px;
+  font-weight: 700;
+  margin-top: auto;
+}
+.labs-stat-label { font-size: 13px; opacity: .75; }
 
-    /* ─── MOBILE RESPONSIVE ──────────────────────── */
-    @media (max-width: 1024px) {
-      .categories-grid { grid-template-columns: repeat(3, 1fr); }
-      .products-grid { grid-template-columns: repeat(2, 1fr); }
-      .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
-      .hero-content { padding: 60px 48px; }
-    }
+/* ── DOCTORS SECTION ── */
+.doctors-section {
+  background: var(--white);
+  padding: 72px 24px;
+}
+.doctors-inner { max-width: 1200px; margin: 0 auto; }
+.doctors-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--green-link);
+  margin-bottom: 8px;
+}
+.doctors-heading {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(24px, 4vw, 38px);
+  line-height: 1.15;
+  margin-bottom: 6px;
+}
+.doctors-sub {
+  font-size: 15px;
+  color: #555;
+  max-width: 560px;
+  line-height: 1.6;
+  margin-bottom: 36px;
+}
+.doctors-grid {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 8px;
+}
+.doctors-grid::-webkit-scrollbar { display: none; }
+.doctor-card {
+  flex: 0 0 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.doctor-avatar {
+  width: 100%;
+  height: 200px;
+  border-radius: 12px;
+  background: linear-gradient(160deg, #D0D8D4, #B0BDB8);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+.doctor-avatar-icon {
+  font-size: 80px;
+  position: absolute;
+  bottom: -10px;
+  opacity: .4;
+}
+.doctor-specialty {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--green-link);
+}
+.doctor-title {
+  font-size: 11px;
+  color: #888;
+  margin-top: -6px;
+}
+.doctor-name {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 15px;
+}
+.doctor-bio { font-size: 12px; color: #666; line-height: 1.55; }
 
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
-      .hero { grid-template-columns: 1fr; }
-      .hero-image-wrap { display: none; }
-      .hero-content { padding: 56px 24px; max-width: 100%; }
-      .categories-grid { grid-template-columns: repeat(2, 1fr); }
-      .proof-inner { grid-template-columns: repeat(2, 1fr); }
-      .products-grid { grid-template-columns: 1fr 1fr; }
-      .steps-grid { grid-template-columns: 1fr; }
-      .steps-grid::before { display: none; }
-      .why-grid { grid-template-columns: 1fr; gap: 28px; }
-      .press-logos { gap: 28px; }
-      .footer-top { grid-template-columns: 1fr 1fr; }
-      .footer-bottom-row { flex-direction: column; align-items: flex-start; }
-    }
+/* ── GUIDE CTA ── */
+.guide-cta {
+  background: linear-gradient(to right, var(--dark-espresso) 55%, #4B5A2A 100%);
+  color: var(--white);
+  padding: 64px 24px;
+}
+.guide-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+.guide-heading {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(22px, 3vw, 32px);
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+.guide-sub { font-size: 14px; opacity: .8; margin-bottom: 24px; line-height: 1.55; }
+.guide-form { display: flex; gap: 10px; flex-wrap: wrap; }
+.guide-input {
+  flex: 1;
+  min-width: 200px;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 100px;
+  padding: 13px 20px;
+  font-size: 14px;
+  color: var(--white);
+  font-family: var(--sans);
+  outline: none;
+}
+.guide-input::placeholder { color: rgba(255,255,255,.5); }
+.guide-input:focus { border-color: rgba(255,255,255,.5); }
+.guide-submit {
+  background: var(--amber);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 13px 28px;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+}
+.guide-man {
+  height: 300px;
+  background: linear-gradient(135deg, rgba(150,120,60,.4) 0%, rgba(50,60,30,.3) 100%);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,.2);
+  font-size: 60px;
+}
 
-    @media (max-width: 480px) {
-      .categories-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-      .products-grid { grid-template-columns: 1fr; }
-      .proof-inner { grid-template-columns: 1fr 1fr; }
-      .footer-top { grid-template-columns: 1fr; }
-    }
+/* ── FOOTER ── */
+footer {
+  background: var(--footer-dark);
+  color: rgba(255,255,255,.7);
+  padding: 60px 24px 0;
+}
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 280px 1fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.footer-brand { }
+.footer-brand-logo {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 28px;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+.footer-brand-tagline {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+.footer-brand-sub { font-size: 12px; color: rgba(255,255,255,.5); }
+.footer-app-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-size: 12px;
+  color: var(--white);
+  margin-top: 16px;
+  cursor: pointer;
+}
+.footer-col-heading {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+  margin-bottom: 16px;
+}
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-links a {
+  font-size: 13px;
+  color: rgba(255,255,255,.65);
+  cursor: pointer;
+  transition: color .15s;
+}
+.footer-links a:hover { color: var(--white); }
 
-    /* ─── MOBILE MENU ────────────────────────────── */
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: var(--white);
-      z-index: 200;
-      flex-direction: column;
-      padding: 0;
-      overflow-y: auto;
-    }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 24px;
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      background: var(--white);
-    }
-    .mobile-menu-header .nav-logo { font-size: 24px; }
-    .mobile-close {
-      background: none;
-      border: none;
-      font-size: 28px;
-      cursor: pointer;
-      color: var(--text-dark);
-      line-height: 1;
-      padding: 4px;
-    }
-    .mobile-menu-body { padding: 24px; flex: 1; }
-    .mobile-menu-body a {
-      display: block;
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--text-dark);
-      padding: 14px 0;
-      border-bottom: 1px solid var(--border);
-      letter-spacing: -0.02em;
-    }
-    .mobile-menu-footer {
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .mobile-menu-footer .btn-primary,
-    .mobile-menu-footer .btn-outline { text-align: center; justify-content: center; width: 100%; }
-  </style>
+.footer-legal {
+  padding: 28px 0;
+  font-size: 11px;
+  color: rgba(255,255,255,.35);
+  line-height: 1.6;
+  border-top: 1px solid rgba(255,255,255,.06);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+.footer-legal a { color: rgba(255,255,255,.35); text-decoration: underline; }
+
+.footer-watermark {
+  text-align: center;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(80px, 15vw, 160px);
+  font-weight: 700;
+  color: rgba(255,255,255,.05);
+  padding: 0 0 24px;
+  letter-spacing: -.02em;
+  line-height: .9;
+  user-select: none;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .t-inner { grid-template-columns: 1fr; }
+  .split-section { grid-template-columns: 1fr; }
+  .guide-inner { grid-template-columns: 1fr; }
+  .sex-bottom { grid-template-columns: 1fr; }
+  .labs-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .category-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 180px 90px 90px;
+  }
+  .hero { padding: 24px 16px 0; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .footer-brand { grid-column: 1/-1; }
+  nav { padding: 12px 16px; }
+  .sex-bottom { grid-template-columns: 1fr; }
+  .doctors-heading { font-size: 24px; }
+}
+</style>
 </head>
 <body>
-
-<!-- ─── ANNOUNCEMENT BAR ─────────────────────────── -->
-<div class="announce-bar">
-  ✨ Free delivery on all orders. <a href="#">Shop now →</a>
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce">
+  <span>The GLP-1 pill is here.</span>
+  <a href="#">Check it out →</a>
 </div>
 
-<!-- ─── NAVIGATION ───────────────────────────────── -->
-<div class="nav-wrapper">
-  <nav>
-    <a href="#" class="nav-logo">hims</a>
-
-    <ul class="nav-links">
-      <li>
-        <a href="#">
-          Hair
-          <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M4 6l4 4 4-4"/>
-          </svg>
-        </a>
-        <div class="dropdown">
-          <a href="#">Hair Loss Overview</a>
-          <a href="#">Finasteride</a>
-          <a href="#">Minoxidil</a>
-          <a href="#">Hair Loss Shampoo</a>
-          <a href="#">Complete Hair Kit</a>
-        </div>
-      </li>
-      <li>
-        <a href="#">
-          ED &amp; PE
-          <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M4 6l4 4 4-4"/>
-          </svg>
-        </a>
-        <div class="dropdown">
-          <a href="#">ED Overview</a>
-          <a href="#">Sildenafil (Generic Viagra)</a>
-          <a href="#">Tadalafil (Generic Cialis)</a>
-          <a href="#">Premature Ejaculation</a>
-          <a href="#">Hard Mints</a>
-        </div>
-      </li>
-      <li>
-        <a href="#">
-          Mental Health
-          <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M4 6l4 4 4-4"/>
-          </svg>
-        </a>
-        <div class="dropdown">
-          <a href="#">Online Therapy</a>
-          <a href="#">Anxiety Treatment</a>
-          <a href="#">Depression Treatment</a>
-          <a href="#">Sleep Aid</a>
-        </div>
-      </li>
-      <li>
-        <a href="#">
-          Skin &amp; Body
-          <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M4 6l4 4 4-4"/>
-          </svg>
-        </a>
-        <div class="dropdown">
-          <a href="#">Skincare Overview</a>
-          <a href="#">Anti-Aging Cream</a>
-          <a href="#">Acne Treatment</a>
-          <a href="#">Face Wash</a>
-          <a href="#">SPF Moisturizer</a>
-        </div>
-      </li>
-      <li>
-        <a href="#">
-          Weight Loss
-          <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M4 6l4 4 4-4"/>
-          </svg>
-        </a>
-        <div class="dropdown">
-          <a href="#">Weight Loss Overview</a>
-          <a href="#">Compounded Semaglutide</a>
-          <a href="#">Metformin</a>
-          <a href="#">Wegovy / Ozempic</a>
-        </div>
-      </li>
-      <li>
-        <a href="#">
-          Primary Care
-          <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M4 6l4 4 4-4"/>
-          </svg>
-        </a>
-        <div class="dropdown">
-          <a href="#">Lab Tests</a>
-          <a href="#">Testosterone</a>
-          <a href="#">Cold &amp; Flu</a>
-          <a href="#">STI Testing</a>
-        </div>
-      </li>
-    </ul>
-
-    <div class="nav-actions">
-      <button class="btn-login">Log in</button>
-      <a href="#" class="btn-start">Get started</a>
-      <button class="hamburger" id="menuToggle" aria-label="Open menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
-</div>
-
-<!-- ─── MOBILE MENU ────────────────────────────────── -->
-<div class="mobile-menu" id="mobileMenu">
-  <div class="mobile-menu-header">
-    <span class="nav-logo">hims</span>
-    <button class="mobile-close" id="menuClose">✕</button>
+<!-- NAV -->
+<nav>
+  <div class="logo">hims</div>
+  <div class="nav-right">
+    <span class="nav-login">Log in</span>
+    <button class="nav-hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
-  <div class="mobile-menu-body">
-    <a href="#">Hair Loss</a>
-    <a href="#">ED &amp; PE</a>
-    <a href="#">Mental Health</a>
-    <a href="#">Skin &amp; Body</a>
-    <a href="#">Weight Loss</a>
-    <a href="#">Primary Care</a>
-  </div>
-  <div class="mobile-menu-footer">
-    <a href="#" class="btn-primary">Get started</a>
-    <a href="#" class="btn-outline">Log in</a>
-  </div>
-</div>
+</nav>
 
-<!-- ─── HERO ─────────────────────────────────────── -->
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-content">
-    <span class="hero-eyebrow">
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor">
-        <circle cx="7" cy="7" r="3.5"/>
-      </svg>
-      Telehealth for men
-    </span>
-    <h1>
-      Unlock better <em>health</em> —<br/>starting with you
-    </h1>
-    <p>
-      Personalized treatments for hair loss, erectile dysfunction, mental health, skincare, weight loss, and more — delivered to your door.
-    </p>
-    <div class="hero-ctas">
-      <a href="#" class="btn-primary">
-        Get started
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5">
-          <path d="M3 8h10M9 4l4 4-4 4"/>
-        </svg>
-      </a>
-      <a href="#" class="btn-outline">See all treatments</a>
-    </div>
-    <div class="hero-trust">
-      <div class="stars">
-        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+  <h1 class="hero-headline">The care you've<br>always deserved</h1>
+  <div class="category-grid">
+    <!-- Big dark card - weight loss -->
+    <div class="cat-card cat-dark">
+      <div>
+        <div class="cat-card-label">Start your</div>
+        <div class="cat-card-title">weight loss<br>today</div>
       </div>
-      <span><strong>4.5/5</strong> average rating</span>
-      <span>·</span>
-      <span><strong>500,000+</strong> happy customers</span>
+      <div style="position:absolute;right:16px;bottom:48px;width:100px;height:100px;display:flex;align-items:center;justify-content:center;">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+          <ellipse cx="40" cy="40" rx="14" ry="36" fill="rgba(255,255,255,.18)" rx="7" transform="rotate(-20 40 40)"/>
+          <rect x="34" y="10" width="14" height="60" rx="7" fill="rgba(255,255,255,.12)" transform="rotate(-20 40 40)"/>
+          <circle cx="42" cy="36" r="10" fill="rgba(255,255,255,.2)"/>
+          <text x="35" y="41" font-size="10" fill="rgba(255,255,255,.6)" font-family="sans-serif">novo</text>
+        </svg>
+      </div>
+      <div class="cat-card-cta">Find your Rx match <span class="arrow">›</span></div>
+    </div>
+    <!-- Big golden card - weight loss photo -->
+    <div class="cat-card cat-tan" style="background:linear-gradient(135deg,#9B6A28 0%,#C4A268 60%,#B07030 100%);">
+      <div>
+        <div class="cat-card-label" style="color:rgba(255,255,255,.8);">See how much</div>
+        <div class="cat-card-title">weight you can&nbsp;lose</div>
+      </div>
+      <div style="position:absolute;right:0;top:0;bottom:0;width:55%;background:linear-gradient(to left,rgba(0,0,0,.15),transparent);border-radius:0 12px 12px 0;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;">
+        <div style="width:100%;height:100%;background:linear-gradient(175deg,rgba(180,130,60,.2) 0%,rgba(100,70,20,.3) 100%);display:flex;align-items:center;justify-content:center;font-size:48px;opacity:.3;">👤</div>
+      </div>
+      <div class="cat-card-cta" style="position:relative;z-index:1;">↓ Lose up to 25%* <span class="arrow">›</span></div>
+    </div>
+    <!-- Small cards -->
+    <div class="cat-small">
+      <div class="cat-small-text">Have better <span>sex</span></div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div class="cat-small-icon" style="background:linear-gradient(135deg,#6BAED6,#4D88BA);">
+          <svg width="24" height="18" viewBox="0 0 24 18"><ellipse cx="12" cy="9" rx="11" ry="8" fill="rgba(255,255,255,.6)"/></svg>
+        </div>
+        <span class="cat-small-arrow">›</span>
+      </div>
+    </div>
+    <div class="cat-small">
+      <div class="cat-small-text">Regrow <span>hair</span></div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div class="cat-small-icon" style="background:linear-gradient(135deg,#90AD72,#6B8B52);">
+          <svg width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="rgba(255,255,255,.4)"/></svg>
+        </div>
+        <span class="cat-small-arrow">›</span>
+      </div>
+    </div>
+    <div class="cat-small">
+      <div class="cat-small-text">Boost <span>testosterone</span></div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div class="cat-small-icon" style="background:linear-gradient(135deg,#9ABDB1,#6D9C94);">
+          <svg width="28" height="16" viewBox="0 0 28 16"><rect x="2" y="4" width="24" height="8" rx="4" fill="rgba(255,255,255,.6)"/></svg>
+        </div>
+        <span class="cat-small-arrow">›</span>
+      </div>
+    </div>
+    <div class="cat-small">
+      <div class="cat-small-text">Get a <span>health check</span></div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div class="cat-small-icon" style="background:linear-gradient(135deg,#C4A268,#9B7A40);">
+          <svg width="28" height="28" viewBox="0 0 28 28"><circle cx="14" cy="14" r="11" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="2.5"/><path d="M14 7v7l5 3" stroke="rgba(255,255,255,.7)" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+        </div>
+        <span class="cat-small-arrow">›</span>
+      </div>
     </div>
   </div>
+</section>
 
-  <div class="hero-image-wrap">
-    <div class="hero-image-placeholder">
-      <svg class="person-silhouette" viewBox="0 0 200 380" fill="white">
-        <circle cx="100" cy="70" r="45"/>
-        <path d="M30 200 Q30 140 100 130 Q170 140 170 200 L170 370 L30 370 Z"/>
-        <path d="M30 230 L0 320 L20 325 L50 240Z"/>
-        <path d="M170 230 L200 320 L180 325 L150 240Z"/>
+<!-- WEIGHT LOSS HERO -->
+<section class="wl-hero">
+  <div class="wl-hero-bg"></div>
+  <div class="wl-hero-inner">
+    <h2 class="wl-hero-heading">Your weight loss<br><em>breakthrough is here</em></h2>
+    <div class="wl-hero-product-img">
+      <svg viewBox="0 0 340 200" xmlns="http://www.w3.org/2000/svg" aria-label="Weight loss medications" style="width:100%;max-width:340px;height:auto;">
+        <!-- Pen / injector -->
+        <rect x="60" y="60" width="22" height="110" rx="11" fill="#C4A268" opacity=".9"/>
+        <rect x="64" y="56" width="14" height="18" rx="5" fill="#E8C98A"/>
+        <rect x="66" y="50" width="10" height="12" rx="3" fill="#d4b070"/>
+        <rect x="60" y="142" width="22" height="20" rx="4" fill="#a08048"/>
+        <rect x="67" y="162" width="8" height="14" rx="3" fill="#888"/>
+        <!-- Pill bottle -->
+        <rect x="130" y="70" width="60" height="90" rx="10" fill="#e8c98a" opacity=".85"/>
+        <rect x="134" y="58" width="52" height="20" rx="6" fill="#FFC671"/>
+        <rect x="140" y="100" width="40" height="5" rx="2" fill="rgba(0,0,0,.15)"/>
+        <rect x="140" y="112" width="40" height="5" rx="2" fill="rgba(0,0,0,.15)"/>
+        <rect x="140" y="124" width="30" height="5" rx="2" fill="rgba(0,0,0,.15)"/>
+        <!-- Capsule pills -->
+        <ellipse cx="235" cy="90" rx="28" ry="13" fill="#FFC671" opacity=".9" transform="rotate(-30 235 90)"/>
+        <ellipse cx="235" cy="90" rx="28" ry="13" fill="none" stroke="rgba(0,0,0,.1)" stroke-width="1" transform="rotate(-30 235 90)"/>
+        <line x1="235" y1="76" x2="235" y2="104" stroke="rgba(0,0,0,.15)" stroke-width="1.5" transform="rotate(-30 235 90)"/>
+        <ellipse cx="255" cy="130" rx="24" ry="11" fill="#d4b070" opacity=".85" transform="rotate(15 255 130)"/>
+        <line x1="255" y1="120" x2="255" y2="140" stroke="rgba(0,0,0,.12)" stroke-width="1.5" transform="rotate(15 255 130)"/>
+        <!-- Shine / light rays -->
+        <ellipse cx="170" cy="40" rx="60" ry="18" fill="#FFC671" opacity=".12"/>
       </svg>
     </div>
+    <p class="wl-hero-body">
+      Lose up to 25% body weight with <strong>Wegovy®*</strong>, now with<br>more options than ever.
+    </p>
+    <button class="btn-amber">Get started</button>
   </div>
 </section>
 
-<!-- ─── CATEGORIES ────────────────────────────────── -->
-<section class="categories">
-  <div class="section-header">
-    <div class="section-label">What we treat</div>
-    <h2 class="section-title">Feel your best, every day</h2>
-    <p class="section-subtitle">From hair to mental health to weight loss — we cover the full picture of men's wellness with clinician-backed treatments.</p>
-  </div>
-
-  <div class="categories-grid">
-    <div class="cat-card">
-      <div class="cat-icon" style="background:#e8f4ec;">💊</div>
-      <h3>Hair Loss</h3>
-      <p>Clinically proven treatments</p>
-      <span class="cat-link">Explore →</span>
+<!-- GLP-1 LINEUP -->
+<section style="padding:48px 0 48px;background:var(--white);">
+  <div class="glp1">
+    <div class="section-heading">Access our wide GLP-1 lineup</div>
+    <div class="product-scroll">
+      <div class="product-card">
+        <div class="product-badge fda">FDA Approved</div>
+        <div class="product-card-img">
+          <div class="pill-visual">💊</div>
+        </div>
+        <div class="product-name">Wegovy® <span style="font-weight:300;font-style:italic;">Pill</span></div>
+        <div class="product-price">From $149/mo†</div>
+        <div class="product-ingredient">Semaglutide</div>
+      </div>
+      <div class="product-card">
+        <div class="product-badge fda">FDA Approved</div>
+        <div class="product-card-img">
+          <div class="pill-visual" style="width:32px;height:70px;border-radius:4px;background:rgba(255,255,255,.4);">💉</div>
+        </div>
+        <div class="product-name">Zepbound® <span style="font-weight:300;font-style:italic;">KwikPen®</span></div>
+        <div class="product-price">From $299/mo†</div>
+        <div class="product-ingredient">Tirzepatide</div>
+      </div>
+      <div class="product-card">
+        <div class="product-badge new">New</div>
+        <div class="product-card-img">
+          <div class="pill-visual" style="background:rgba(255,200,200,.3);">🔴</div>
+        </div>
+        <div class="product-name">Foundayo®</div>
+        <div class="product-price">From $149/mo†</div>
+        <div class="product-ingredient">Orforglipron</div>
+      </div>
+      <div class="product-card" style="background:#A89058;">
+        <div class="product-badge fda" style="background:rgba(255,255,255,.2);color:white;">High dose option</div>
+        <div class="product-card-img">
+          <div class="pill-visual">💉</div>
+        </div>
+        <div class="product-name">Wegovy® <span style="font-weight:300;font-style:italic;">Pen</span></div>
+        <div class="product-price">From $199/mo†</div>
+        <div class="product-ingredient">Semaglutide</div>
+      </div>
+      <div class="product-card" style="background:#9B8048;">
+        <div class="product-card-img">
+          <div class="pill-visual">🧪</div>
+        </div>
+        <div class="product-name">Microdosing <span style="font-weight:300;font-style:italic;">Plan</span></div>
+        <div class="product-price">From $149/mo†</div>
+        <div class="product-ingredient">Semaglutide Vial</div>
+      </div>
     </div>
-    <div class="cat-card">
-      <div class="cat-icon" style="background:#fef0e0;">🔵</div>
-      <h3>ED &amp; PE</h3>
-      <p>Discreet, fast-acting options</p>
-      <span class="cat-link">Explore →</span>
-    </div>
-    <div class="cat-card">
-      <div class="cat-icon" style="background:#f0eefc;">🧠</div>
-      <h3>Mental Health</h3>
-      <p>Therapy &amp; anxiety support</p>
-      <span class="cat-link">Explore →</span>
-    </div>
-    <div class="cat-card">
-      <div class="cat-icon" style="background:#fce8e8;">✨</div>
-      <h3>Skin &amp; Body</h3>
-      <p>Anti-aging &amp; acne care</p>
-      <span class="cat-link">Explore →</span>
-    </div>
-    <div class="cat-card">
-      <div class="cat-icon" style="background:#e0f0fc;">⚡</div>
-      <h3>Weight Loss</h3>
-      <p>GLP-1 &amp; medical support</p>
-      <span class="cat-link">Explore →</span>
-    </div>
-    <div class="cat-card">
-      <div class="cat-icon" style="background:#f5f0e8;">🩺</div>
-      <h3>Primary Care</h3>
-      <p>Labs, STI testing &amp; more</p>
-      <span class="cat-link">Explore →</span>
-    </div>
+    <div class="glp1-disclaimer">†Price includes medication only, if prescribed. An active Hims Weight Loss Membership is required ($39 for the first month).</div>
   </div>
 </section>
 
-<!-- ─── SOCIAL PROOF BANNER ───────────────────────── -->
-<div class="proof-banner">
-  <div class="proof-inner">
-    <div class="proof-item">
-      <div class="proof-num">500K+</div>
-      <div class="proof-label">Active subscribers<br/>across the US</div>
+<!-- SPLIT SECTION -->
+<div class="split-section">
+  <div class="split-card split-dark">
+    <div>
+      <div class="split-label">New</div>
+      <div class="split-title">The perfect<br>SNAC</div>
     </div>
-    <div class="proof-item">
-      <div class="proof-num">4.5★</div>
-      <div class="proof-label">Average customer<br/>satisfaction rating</div>
+    <div>
+      <div class="split-body">High-protein, doctor-formulated nutrition to support your weight loss journey.</div>
+      <div class="split-link" style="color:var(--amber);">See the science →</div>
     </div>
-    <div class="proof-item">
-      <div class="proof-num">50+</div>
-      <div class="proof-label">Treatments available<br/>online today</div>
+  </div>
+  <div class="split-card split-tan">
+    <div>
+      <div class="split-label">Wegovy® Pen</div>
+      <div class="split-title"><em>Lose up to 25%</em><br>body weight</div>
     </div>
-    <div class="proof-item">
-      <div class="proof-num">$0</div>
-      <div class="proof-label">Consultation fee<br/>always free</div>
+    <div>
+      <div class="split-body">FDA-approved Wegovy® injection for significant, lasting weight loss.</div>
+      <div class="split-link" style="color:var(--white);">Explore Wegovy® Pen →</div>
     </div>
   </div>
 </div>
 
-<!-- ─── FEATURED PRODUCTS ─────────────────────────── -->
-<section class="products">
-  <div class="section-header">
-    <div class="section-label">Top picks</div>
-    <h2 class="section-title">Our most popular treatments</h2>
-    <p class="section-subtitle">Backed by licensed clinicians. Delivered to your door. No awkward waiting rooms.</p>
-  </div>
+<!-- SEX SECTION -->
+<section class="sex-section">
+  <div class="sex-bg"></div>
+  <div class="sex-inner">
+    <div class="sex-meta">Is this right for me?</div>
+    <h2 class="sex-heading">Play on<br>hard mode</h2>
+    <div class="sex-link">Is this right for me?</div>
 
-  <div class="products-grid">
-    <div class="product-card">
-      <div class="product-img" style="background: linear-gradient(145deg, #e8f4ec, #c8e8d2);">
-        💊
-        <span class="badge">Best Seller</span>
+    <div class="sex-products-label">There's something for everyone</div>
+    <div class="sex-products">
+      <div class="sex-product-chip">
+        <div class="sex-product-badge">2-in-1 · Daily</div>
+        <div class="sex-product-img-placeholder">💊</div>
+        <div class="sex-product-name">Sex Rx + Testosterone Support</div>
+        <div class="sex-product-price">Tadalafil, zinc · From $35/mo</div>
       </div>
-      <div class="product-info">
-        <div class="product-category">Hair Loss</div>
-        <h3>Finasteride 1mg</h3>
-        <p class="product-desc">The #1 prescribed oral hair loss treatment. Clinically proven to stop hair loss and regrow hair in men.</p>
-        <div class="product-stars">
-          <div class="stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <span class="review-count">(12,430)</span>
-        </div>
-        <div class="product-price">
-          <span class="price-current">$25/mo</span>
-          <span class="price-original">$50/mo</span>
-        </div>
-        <a href="#" class="btn-card">Start free consultation</a>
+      <div class="sex-product-chip">
+        <div class="sex-product-badge">2-in-1 · Daily</div>
+        <div class="sex-product-img-placeholder" style="background:rgba(100,150,200,.3);">💊</div>
+        <div class="sex-product-name">Sex Rx + Climax Control</div>
+        <div class="sex-product-price">Tadalafil, PE treatment · From $39/mo</div>
+      </div>
+      <div class="sex-product-chip">
+        <div class="sex-product-badge">3-in-1 · As-needed</div>
+        <div class="sex-product-img-placeholder" style="background:rgba(150,180,140,.3);">💊</div>
+        <div class="sex-product-name">3-in-1 Pill</div>
+        <div class="sex-product-price">Sildenafil, tadalafil, B12 · From $30/mo</div>
+      </div>
+      <div class="sex-product-chip">
+        <div class="sex-product-badge">As-needed</div>
+        <div class="sex-product-img-placeholder" style="background:rgba(80,120,80,.3);">💊</div>
+        <div class="sex-product-name">3-in-1 Chew</div>
+        <div class="sex-product-price">From $36/mo</div>
+      </div>
+      <div class="sex-product-chip">
+        <div class="sex-product-badge">As-needed</div>
+        <div class="sex-product-img-placeholder" style="background:rgba(60,100,160,.3);">💊</div>
+        <div class="sex-product-name">Generic Viagra</div>
+        <div class="sex-product-price">Sildenafil · From $22/mo</div>
       </div>
     </div>
 
-    <div class="product-card">
-      <div class="product-img" style="background: linear-gradient(145deg, #fef0e0, #fad8b0);">
-        🔵
-        <span class="badge">Most Popular</span>
-      </div>
-      <div class="product-info">
-        <div class="product-category">ED</div>
-        <h3>Sildenafil 50mg</h3>
-        <p class="product-desc">Generic Viagra. The same active ingredient at a fraction of the cost, prescribed online in minutes.</p>
-        <div class="product-stars">
-          <div class="stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <span class="review-count">(9,872)</span>
-        </div>
-        <div class="product-price">
-          <span class="price-current">$3/pill</span>
-          <span class="price-original">$7/pill</span>
-        </div>
-        <a href="#" class="btn-card">Start free consultation</a>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <div class="product-img" style="background: linear-gradient(145deg, #f0eefc, #d8d0f4);">
-        🧠
-        <span class="badge">New</span>
-      </div>
-      <div class="product-info">
-        <div class="product-category">Mental Health</div>
-        <h3>Online Therapy</h3>
-        <p class="product-desc">Connect with a licensed therapist on your schedule. Video, phone, or messaging sessions available.</p>
-        <div class="product-stars">
-          <div class="stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <span class="review-count">(4,215)</span>
-        </div>
-        <div class="product-price">
-          <span class="price-current">$99/mo</span>
-          <span class="price-note">Billed monthly</span>
-        </div>
-        <a href="#" class="btn-card">Get matched today</a>
-      </div>
-    </div>
-
-    <div class="product-card">
-      <div class="product-img" style="background: linear-gradient(145deg, #e0f0fc, #b8d8f4);">
-        ⚡
-        <span class="badge">Trending</span>
-      </div>
-      <div class="product-info">
-        <div class="product-category">Weight Loss</div>
-        <h3>Compounded Semaglutide</h3>
-        <p class="product-desc">The active ingredient in Ozempic® and Wegovy®. GLP-1 injections for medically supervised weight loss.</p>
-        <div class="product-stars">
-          <div class="stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-          <span class="review-count">(3,104)</span>
-        </div>
-        <div class="product-price">
-          <span class="price-current">$199/mo</span>
-        </div>
-        <a href="#" class="btn-card">Start free consultation</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── HOW IT WORKS ───────────────────────────────── -->
-<section class="how-it-works">
-  <div class="section-header">
-    <div class="section-label">Process</div>
-    <h2 class="section-title">Healthcare, simplified</h2>
-    <p class="section-subtitle">Get started in minutes. No waiting rooms. No awkward conversations. Just real, clinician-backed care.</p>
-  </div>
-
-  <div class="steps-grid">
-    <div class="step">
-      <div class="step-num">
-        📋
-        <span class="step-count">1</span>
-      </div>
-      <h3>Complete an intake form</h3>
-      <p>Answer a few questions about your health, lifestyle, and goals. Takes less than 5 minutes.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">
-        👨‍⚕️
-        <span class="step-count">2</span>
-      </div>
-      <h3>Get matched with a clinician</h3>
-      <p>A licensed provider reviews your intake and, if appropriate, prescribes a personalized treatment plan.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">
-        📦
-        <span class="step-count">3</span>
-      </div>
-      <h3>Receive free delivery</h3>
-      <p>Your treatment ships directly to your door in discreet packaging. Free delivery, always.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ─── TESTIMONIALS ──────────────────────────────── -->
-<section class="testimonials">
-  <div class="section-header">
-    <div class="section-label">Real results</div>
-    <h2 class="section-title">Guys just like you</h2>
-    <p class="section-subtitle">Over 500,000 customers have trusted hims with their health. Here's what some of them have to say.</p>
-  </div>
-
-  <div class="testimonials-track" id="testimonialsTrack">
-    <div class="testimonial-card">
-      <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <p class="t-quote">"I've been using finasteride for about 8 months now and my hair loss has completely stopped. I even notice new growth on my temples. Genuinely life-changing."</p>
-      <div class="t-author">
-        <div class="t-avatar">👦</div>
-        <div class="t-author-info">
-          <div class="t-name">Michael T.</div>
-          <div class="t-detail">Verified customer · Chicago, IL</div>
+    <div class="sex-bottom">
+      <div class="sex-quiz">
+        <div class="sex-quiz-q">How would you like to<br>enhance your sex&nbsp;life?</div>
+        <div class="quiz-options">
+          <div class="quiz-opt">Get hard</div>
+          <div class="quiz-opt">Last longer</div>
+          <div class="quiz-opt">Satisfy my partner</div>
+          <div class="quiz-opt">All of these</div>
         </div>
       </div>
-      <span class="t-tag">Hair Loss</span>
-    </div>
-
-    <div class="testimonial-card">
-      <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <p class="t-quote">"The process was so easy and discreet. I got my prescription within 24 hours and everything came in plain packaging. 10/10 would recommend."</p>
-      <div class="t-author">
-        <div class="t-avatar">🧔</div>
-        <div class="t-author-info">
-          <div class="t-name">Jason R.</div>
-          <div class="t-detail">Verified customer · Austin, TX</div>
-        </div>
-      </div>
-      <span class="t-tag">ED</span>
-    </div>
-
-    <div class="testimonial-card">
-      <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <p class="t-quote">"I was skeptical at first, but my therapist is fantastic. Sessions fit around my work schedule perfectly and I've seen real improvement in my anxiety."</p>
-      <div class="t-author">
-        <div class="t-avatar">🧑</div>
-        <div class="t-author-info">
-          <div class="t-name">David L.</div>
-          <div class="t-detail">Verified customer · New York, NY</div>
-        </div>
-      </div>
-      <span class="t-tag">Mental Health</span>
-    </div>
-
-    <div class="testimonial-card">
-      <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <p class="t-quote">"Down 28 lbs in 4 months with semaglutide. The medical team checks in regularly and adjusting my dose was seamless. Best decision I've made for my health."</p>
-      <div class="t-author">
-        <div class="t-avatar">👨</div>
-        <div class="t-author-info">
-          <div class="t-name">Carlos M.</div>
-          <div class="t-detail">Verified customer · Miami, FL</div>
-        </div>
-      </div>
-      <span class="t-tag">Weight Loss</span>
-    </div>
-
-    <div class="testimonial-card">
-      <div class="t-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-      <p class="t-quote">"The skincare routine they prescribed actually works. My skin is clearer than it's been since my teens. The provider was super helpful and responsive."</p>
-      <div class="t-author">
-        <div class="t-avatar">🧑‍🦱</div>
-        <div class="t-author-info">
-          <div class="t-name">Tyler W.</div>
-          <div class="t-detail">Verified customer · Seattle, WA</div>
-        </div>
-      </div>
-      <span class="t-tag">Skin &amp; Body</span>
-    </div>
-  </div>
-
-  <div class="testimonials-nav">
-    <button onclick="scrollTestimonials(-1)" aria-label="Previous">←</button>
-    <button onclick="scrollTestimonials(1)" aria-label="Next">→</button>
-  </div>
-</section>
-
-<!-- ─── WHY HIMS ────────────────────────────────────── -->
-<section class="why-hims">
-  <div class="section-header">
-    <div class="section-label">Why hims</div>
-    <h2 class="section-title">Healthcare built around you</h2>
-    <p class="section-subtitle">We're changing the way men access health care — making it more accessible, affordable, and stigma-free.</p>
-  </div>
-
-  <div class="why-grid">
-    <div class="why-item">
-      <div class="why-icon">🔒</div>
-      <h3>100% private &amp; discreet</h3>
-      <p>Your medical information is protected. Treatments ship in plain, unmarked packaging. Your privacy is our priority.</p>
-    </div>
-    <div class="why-item">
-      <div class="why-icon">👨‍⚕️</div>
-      <h3>Board-certified clinicians</h3>
-      <p>Our network of licensed providers is available online, so you can get care on your schedule — no waiting rooms.</p>
-    </div>
-    <div class="why-item">
-      <div class="why-icon">🏥</div>
-      <h3>FDA-approved treatments</h3>
-      <p>Every treatment we offer is FDA-approved or clinician-prescribed based on the best available evidence.</p>
-    </div>
-    <div class="why-item">
-      <div class="why-icon">📱</div>
-      <h3>Always-on support</h3>
-      <p>Message your care team any time through our app. Adjust your plan, ask questions, or just check in — they're here.</p>
-    </div>
-    <div class="why-item">
-      <div class="why-icon">💸</div>
-      <h3>Transparent, fair pricing</h3>
-      <p>No surprise bills. No hidden fees. See exactly what you'll pay before you commit — and cancel anytime.</p>
-    </div>
-    <div class="why-item">
-      <div class="why-icon">🚚</div>
-      <h3>Free delivery, always</h3>
-      <p>Your treatments ship for free directly to your door. Refills are automatic so you never run out.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ─── PRESS ───────────────────────────────────────── -->
-<section class="press">
-  <p>As featured in</p>
-  <div class="press-logos">
-    <span class="press-logo serif">The New York Times</span>
-    <span class="press-logo">Forbes</span>
-    <span class="press-logo serif">The Wall Street Journal</span>
-    <span class="press-logo small">Business Insider</span>
-    <span class="press-logo serif">GQ</span>
-    <span class="press-logo small">Men's Health</span>
-  </div>
-</section>
-
-<!-- ─── FAQ ────────────────────────────────────────── -->
-<section class="faq">
-  <div class="section-header">
-    <div class="section-label">FAQ</div>
-    <h2 class="section-title">Common questions</h2>
-    <p class="section-subtitle">Everything you need to know about getting started with hims.</p>
-  </div>
-
-  <div class="faq-list">
-    <div class="faq-item">
-      <button class="faq-question" onclick="toggleFaq(this)">
-        How does the online consultation work?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-answer">
-        <div class="faq-answer-inner">
-          You fill out a brief intake form about your health history and symptoms — it takes about 5 minutes. A licensed provider in your state reviews your information and, if appropriate, writes a prescription. You'll hear back within 24 hours. The consultation is always free, and you only pay if you're prescribed a treatment.
-        </div>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-question" onclick="toggleFaq(this)">
-        Are the treatments covered by insurance?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-answer">
-        <div class="faq-answer-inner">
-          Most hims treatments are not covered by insurance, but our prices are often significantly lower than insurance copays for brand-name versions. We accept HSA and FSA cards for eligible health expenses. We'll always be upfront about pricing before you commit.
-        </div>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-question" onclick="toggleFaq(this)">
-        How quickly will I see results?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-answer">
-        <div class="faq-answer-inner">
-          Results vary by treatment. ED medications can work within 30–60 minutes. Hair loss treatments typically show results after 3–6 months of consistent use. Weight loss results with semaglutide usually appear within the first month. Your provider will set realistic expectations during your consultation.
-        </div>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-question" onclick="toggleFaq(this)">
-        Can I cancel or pause my subscription?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-answer">
-        <div class="faq-answer-inner">
-          Yes — no commitments, no cancellation fees. You can pause, skip a month, or cancel your subscription at any time through your account dashboard or by messaging our support team. We'll never charge you after you cancel.
-        </div>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-question" onclick="toggleFaq(this)">
-        Is my information kept private?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-answer">
-        <div class="faq-answer-inner">
-          Absolutely. We're HIPAA-compliant and take your privacy seriously. Your health information is encrypted and never shared without your explicit consent. Packages arrive in plain, discreet packaging with no indication of what's inside or who it's from.
-        </div>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-question" onclick="toggleFaq(this)">
-        What states does hims operate in?
-        <span class="faq-icon">+</span>
-      </button>
-      <div class="faq-answer">
-        <div class="faq-answer-inner">
-          Hims is available in all 50 US states. However, certain treatments may not be available in all states due to local regulations. Your intake form will confirm availability for your specific location and desired treatment.
+      <div class="sex-testimonial">
+        <div class="testimonial-nav">Testimonial 1 of 4</div>
+        <div class="testimonial-quote">"I found one that worked incredibly well....and my partner noticed!"</div>
+        <div>
+          <div class="testimonial-author">Paul, 59</div>
+          <div class="testimonial-product">Sex Rx + Climax Control</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ─── BOTTOM CTA BANNER ──────────────────────────── -->
-<section class="cta-banner">
-  <h2>Your health journey<br/>starts now</h2>
-  <p>Join half a million men who've taken control of their health with hims.</p>
-  <a href="#" class="btn-cta-white">
-    Get started for free
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5">
-      <path d="M3 8h10M9 4l4 4-4 4"/>
-    </svg>
-  </a>
-  <div class="cta-note">Free consultation · Cancel anytime · Ships to all 50 states</div>
+<!-- TESTOSTERONE SECTION -->
+<section class="t-section">
+  <div class="t-inner">
+    <div>
+      <h2 class="t-heading">Get your edge back with<br>Testosterone by Hims</h2>
+      <div class="t-sub">Do I have low T?</div>
+      <div class="t-cards">
+        <div class="t-card">
+          <div class="t-card-icon">⚗️</div>
+          <div>
+            <div class="t-card-name">Enclomiphene</div>
+            <div class="t-card-sub">to elevate your T</div>
+          </div>
+          <div class="t-card-cta">Learn more →</div>
+        </div>
+        <div class="t-card">
+          <div class="t-card-icon">💊</div>
+          <div>
+            <div class="t-card-name">Now with supplements</div>
+            <div class="t-card-sub">Support your levels</div>
+          </div>
+          <div class="t-card-cta">Shop →</div>
+        </div>
+        <div class="t-card">
+          <div class="t-card-icon">🧪</div>
+          <div>
+            <div class="t-card-name">At-home labs</div>
+            <div class="t-card-sub">to check your T levels</div>
+          </div>
+          <div class="t-card-cta">Start testing →</div>
+        </div>
+      </div>
+    </div>
+    <div class="phone-mockup">
+      <div class="phone-mockup-inner">
+        <div class="phone-screen-content">
+          <div class="phone-app-name">hims</div>
+          <div class="phone-metric">430</div>
+          <div class="phone-metric-label">ng/dL · Total Testosterone</div>
+          <div style="margin-top:20px;font-size:12px;opacity:.6;">Get your labs<br>Go for your optimal.</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- ─── FOOTER ─────────────────────────────────────── -->
+<!-- LABS SECTION -->
+<section class="labs-section">
+  <div class="labs-top">
+    <h2 class="labs-heading">Get your labs.<br><em>Go for your optimal.</em></h2>
+    <div class="labs-sub">A clear picture of your health with a simple lab test.</div>
+    <button class="labs-btn">Start my labs</button>
+  </div>
+  <div class="labs-grid">
+    <div class="labs-card">
+      <div class="labs-card-label">Find your baseline</div>
+      <div class="labs-card-title">Get a clear picture of your health</div>
+      <div class="labs-card-body">Understand where you stand with a comprehensive lab panel reviewed by a doctor.</div>
+      <div class="labs-stat">130+</div>
+      <div class="labs-stat-label">biomarkers tested</div>
+      <div class="labs-card-cta">Meet the markers →</div>
+    </div>
+    <div class="labs-card">
+      <div class="labs-card-label">Plan your breakthrough</div>
+      <div class="labs-card-title">Optimize with a doctor-developed Action Plan</div>
+      <div class="labs-card-body">Get personalized recommendations from your results and a licensed provider.</div>
+      <div class="labs-stat">50+</div>
+      <div class="labs-stat-label">types of cancer screened</div>
+      <div class="labs-card-cta">Learn more →</div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCTORS SECTION -->
+<section class="doctors-section">
+  <div class="doctors-inner">
+    <div class="doctors-label">The best care</div>
+    <h2 class="doctors-heading">by the best in medicine</h2>
+    <p class="doctors-sub">Meet the team of leading specialists with decades of combined experience across key specialties.</p>
+    <div class="doctors-grid">
+      <div class="doctor-card">
+        <div class="doctor-avatar">
+          <div class="doctor-avatar-icon">👨‍⚕️</div>
+        </div>
+        <div class="doctor-specialty">Metabolic Health</div>
+        <div class="doctor-title">Head of Weight Loss, Hims & Hers</div>
+        <div class="doctor-name">Dr. Craig Primack, MD</div>
+        <div class="doctor-bio">Nationally recognized obesity specialist who educates clinicians on evidence-based weight-management care.</div>
+      </div>
+      <div class="doctor-card">
+        <div class="doctor-avatar" style="background:linear-gradient(160deg,#C8D4D0,#A0B0AC);">
+          <div class="doctor-avatar-icon">👨‍⚕️</div>
+        </div>
+        <div class="doctor-specialty">Men's Health</div>
+        <div class="doctor-title">Head of Men's Sexual Health & Urology</div>
+        <div class="doctor-name">Dr. Peter Stahl, MD</div>
+        <div class="doctor-bio">Leading urologist specializing in male sexual health and reproductive medicine.</div>
+      </div>
+      <div class="doctor-card">
+        <div class="doctor-avatar" style="background:linear-gradient(160deg,#C0CCCC,#9AACAC);">
+          <div class="doctor-avatar-icon">👨‍⚕️</div>
+        </div>
+        <div class="doctor-specialty">Liver & Kidney Health</div>
+        <div class="doctor-title">Head of Medical Affairs, Hims & Hers</div>
+        <div class="doctor-name">Dr. Brian Williams, MD</div>
+        <div class="doctor-bio">Board-certified family medicine physician with extensive experience in dermatology and clinical care.</div>
+      </div>
+      <div class="doctor-card">
+        <div class="doctor-avatar" style="background:linear-gradient(160deg,#D4C8D4,#B0A0B4);">
+          <div class="doctor-avatar-icon">👩‍⚕️</div>
+        </div>
+        <div class="doctor-specialty">Thyroid Health</div>
+        <div class="doctor-title">Endocrinology Advisor</div>
+        <div class="doctor-name">Dr. Alicia Warnock, MD</div>
+        <div class="doctor-bio">Endocrinologist and former U.S. Navy officer who directed the Diabetes Institute at Walter Reed.</div>
+      </div>
+      <div class="doctor-card">
+        <div class="doctor-avatar" style="background:linear-gradient(160deg,#BCC8D8,#98AABB);">
+          <div class="doctor-avatar-icon">👨‍⚕️</div>
+        </div>
+        <div class="doctor-specialty">Heart Health</div>
+        <div class="doctor-title">Cardiology Advisor</div>
+        <div class="doctor-name">Dr. Deepak L. Bhatt, MD</div>
+        <div class="doctor-bio">One of the world's leading cardiologists with leadership roles at top medical programs globally.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUIDE CTA -->
+<section class="guide-cta">
+  <div class="guide-inner">
+    <div>
+      <h2 class="guide-heading">Unlock the free Guide to Protein for Weight Loss</h2>
+      <div class="guide-sub">Written by board-certified doctors to support your journey.</div>
+      <div class="guide-form">
+        <input class="guide-input" type="email" placeholder="Email">
+        <button class="guide-submit">Get the guide</button>
+      </div>
+      <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:12px;line-height:1.5;">
+        By creating an account using email, I agree to the <a href="#" style="color:rgba(255,255,255,.4);text-decoration:underline;">Terms & Conditions</a>, and acknowledge the <a href="#" style="color:rgba(255,255,255,.4);text-decoration:underline;">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="guide-man">👨</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-  <div class="footer-top">
-    <div class="footer-brand">
-      <div class="footer-logo">hims</div>
-      <p>Making healthcare accessible, affordable, and stigma-free for men everywhere.</p>
-      <div class="footer-social">
-        <a href="#" aria-label="Instagram">📷</a>
-        <a href="#" aria-label="Twitter/X">✕</a>
-        <a href="#" aria-label="Facebook">f</a>
-        <a href="#" aria-label="TikTok">♪</a>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-brand-logo">hims</div>
+        <div class="footer-brand-tagline">Total care.<br>Totally different.</div>
+        <div class="footer-brand-sub">Download the free Hims app</div>
+        <div class="footer-app-btn">
+          <span>📱</span>
+          <span>Download the app<br><span style="opacity:.6;font-size:11px;">For iOS and Android</span></span>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-heading">Treatments</div>
+        <ul class="footer-links">
+          <li><a href="#">Cialis / Tadalafil</a></li>
+          <li><a href="#">Generic for Cialis</a></li>
+          <li><a href="#">Minoxidil Solution</a></li>
+          <li><a href="#">Finasteride Pills</a></li>
+          <li><a href="#">Topical Finasteride</a></li>
+          <li><a href="#">Sertraline for PE</a></li>
+          <li><a href="#">Escitalopram</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-heading">Learn</div>
+        <ul class="footer-links">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Good Health (Blog)</a></li>
+          <li><a href="#">How It Works</a></li>
+          <li><a href="#">Clinical Excellence</a></li>
+          <li><a href="#">Innovation</a></li>
+          <li><a href="#">Quality & Safety</a></li>
+          <li><a href="#">FAQs</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-heading">Company</div>
+        <ul class="footer-links">
+          <li><a href="#">Hims Benefits</a></li>
+          <li><a href="#">Editorial Standards</a></li>
+          <li><a href="#">Investors</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Professionals</a></li>
+          <li><a href="#">Providers</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-heading">Connect</div>
+        <ul class="footer-links">
+          <li><a href="#">Customer Help Center</a></li>
+          <li><a href="#">Press Center</a></li>
+          <li><a href="#">visit forhers.com</a></li>
+        </ul>
       </div>
     </div>
 
-    <div class="footer-col">
-      <h4>Treatments</h4>
-      <ul>
-        <li><a href="#">Hair Loss</a></li>
-        <li><a href="#">Erectile Dysfunction</a></li>
-        <li><a href="#">Premature Ejaculation</a></li>
-        <li><a href="#">Mental Health</a></li>
-        <li><a href="#">Skin &amp; Body</a></li>
-        <li><a href="#">Weight Loss</a></li>
-        <li><a href="#">Primary Care</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h4>Company</h4>
-      <ul>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Our Clinicians</a></li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">Press</a></li>
-        <li><a href="#">Careers</a></li>
-        <li><a href="#">Affiliate Program</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h4>Support</h4>
-      <ul>
-        <li><a href="#">Help Center</a></li>
-        <li><a href="#">Contact Us</a></li>
-        <li><a href="#">Shipping Info</a></li>
-        <li><a href="#">Returns Policy</a></li>
-        <li><a href="#">Manage Subscription</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h4>Legal</h4>
-      <ul>
-        <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Terms of Service</a></li>
-        <li><a href="#">Cookie Policy</a></li>
-        <li><a href="#">HIPAA Notice</a></li>
-        <li><a href="#">Accessibility</a></li>
-        <li><a href="#">Do Not Sell My Info</a></li>
-      </ul>
+    <div class="footer-legal">
+      <a href="#">Terms & conditions</a>
+      <a href="#">Privacy policy</a>
+      <a href="#">Sitemap</a>
+      <a href="#">Telehealth Consent & Open Payments</a>
+      <a href="#">Consumer Health Data Privacy Policy</a>
+      <a href="#">Your privacy choices</a>
+      <span style="width:100%;">© 2026 Hims & Hers Health, Inc. All rights reserved. HIMS, HERS, H, and HIMS & HERS are trademarks of Hims, Inc.</span>
     </div>
   </div>
 
-  <div class="footer-bottom">
-    <div class="footer-bottom-row">
-      <div class="footer-links-row">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-        <a href="#">Accessibility</a>
-        <a href="#">Sitemap</a>
-      </div>
-      <div class="footer-copy">© 2024 Hims, Inc. All rights reserved.</div>
-    </div>
-    <p class="footer-legal">
-      Hims is not a pharmacy. Hims connects patients with licensed healthcare providers who can prescribe medications where appropriate. Medications are dispensed by licensed pharmacies. IMPORTANT SAFETY INFORMATION: Finasteride may increase the risk of developing a more serious form of prostate cancer. Talk to your healthcare provider about any side effects. This site is intended for US residents only. *These statements have not been evaluated by the Food and Drug Administration. These products are not intended to diagnose, treat, cure, or prevent any disease.
-    </p>
-  </div>
+  <div class="footer-watermark">hims</div>
 </footer>
 
-<script>
-  // ─── Mobile menu toggle
-  const menuToggle = document.getElementById('menuToggle');
-  const menuClose  = document.getElementById('menuClose');
-  const mobileMenu = document.getElementById('mobileMenu');
-
-  menuToggle.addEventListener('click', () => {
-    mobileMenu.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  });
-  menuClose.addEventListener('click', () => {
-    mobileMenu.classList.remove('open');
-    document.body.style.overflow = '';
-  });
-
-  // ─── FAQ accordion
-  function toggleFaq(btn) {
-    const item = btn.closest('.faq-item');
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
-  }
-
-  // ─── Testimonials scroll
-  function scrollTestimonials(dir) {
-    const track = document.getElementById('testimonialsTrack');
-    track.scrollBy({ left: dir * 370, behavior: 'smooth' });
-  }
-
-  // ─── Nav scroll shadow
-  const navWrapper = document.querySelector('.nav-wrapper');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 8) {
-      navWrapper.style.boxShadow = '0 2px 20px rgba(0,0,0,0.08)';
-    } else {
-      navWrapper.style.boxShadow = '';
-    }
-  });
-</script>
 </body>
 </html>
